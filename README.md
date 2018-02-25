@@ -73,14 +73,14 @@ In the top section has an area for some visual representations of the data colle
 
 #### **Option Model**
 ##### Associations: Belongs to one User
-| ID   | UserId | BirthMonth       | Recieve Emails | etc... |
-| ---- |:------:| ----------------:| -------------: |        |
-| 10   | 5      | Bday Month/Year  | true or false  |        |
+| ID   | UserId | BirthMonth       | Recieve Emails | etc  |
+| ---- |:------:| ----------------:| -------------: | ---: |
+| 10   | 5      | Bday Month/Year  | true or false  |      |
 
 #### **Flavor Model**
-##### Associations: Belongs to one user
+##### Associations: none?
 | ID   | Name       | Category    | Status      |
-| ---- | ----------:| ------------------------: |
+| ---- |:----------:| ------------------------: |
 | 23   | Chocolate  | Low Fat     | In Rotation |
 
 
