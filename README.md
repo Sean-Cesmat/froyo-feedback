@@ -80,7 +80,7 @@ In the top section has an area for some visual representations of the data colle
 #### **Flavor Model**
 ##### Associations: none?
 | ID   | Name       | Category    | Status      |
-| ---- |:----------:| ------------------------: |
+| ---- |:----------:| ----------- | ----------: |
 | 23   | Chocolate  | Low Fat     | In Rotation |
 
 
