@@ -20,12 +20,12 @@ As the owner, I want to be able to let customers know when their favorite flavor
 ## WIREFRAMES
 ##### Home Login
 This wireframe shows a basic logo with a little bit of text and a login for the user. There will be a link below for a sign up modal if they don't already have an account.
-![alt text](https://github.com/Sean-Cesmat/froyo-feedback/master/readme-images/wireframe-home-login.jpg "Home Login Wireframe")
+![alt text](/readme-images/wireframe-home-login.jpg "Home Login Wireframe")
 
 ##### Favorites Page
 In the top section has a place where the user could select their top 6 flavors. Below is a place to select any others that they enjoy but didn't make the cut of top 6. There will be a couple links on the side bar.
-![alt text](https://github.com/Sean-Cesmat/froyo-feedback/master/readme-images/wireframe-favorites.jpg "Favorites Wireframe")
+![alt text](/readme-images/wireframe-favorites.jpg "Favorites Wireframe")
 
 ##### Business Dashboard Page
 In the top section has an area for some visual representations of the data collected (not sure exactly what that will look like yet). The bottom section will have more information about the top selected flavors it different categories ex. sorbets, no sugar added, almond based yogurt
-![alt text](https://github.com/Sean-Cesmat/froyo-feedback/master/readme-images/wireframe-business.jpg "Business Dashboard Wireframe")
+![alt text](/readme-images/wireframe-business.jpg "Business Dashboard Wireframe")
