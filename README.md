@@ -37,17 +37,16 @@ In the top section has an area for some visual representations of the data colle
 ## ROUTES
 
 #### CURRENT ROUTE UNKNOWNS
-- I imaging I'm going to create an initial profile and options/settings for each use when the user in created.
-- /flavor-profile/:id or /flavor-profile and I just get the id from the current session? But is that even RESTful?
-- do I need a separate sign in form or can I just use findOrCreate?
+
 
 | Verb   | Path                        | Action | Used For |
 | ------ |:---------------------------:| ------:| -------: |
 | GET    | /                           | index  | Loads the homepage
-| POST   | /                           | show   | Authenticates and sends user to their flavor profile
+| POST   | /login                      | show   | Authenticates and sends user to their flavor profile
+| POST   | /sign-up                    | create | Creates a new user and send them to their flavor profile
 | GET    | /logout                     | index  | Logs out the user and redirects to the homepage
-| GET    | /flavor-profile/:id ?       | show   | Retrieves the users profile and renders it
-| PUT    | /flavor-profile/:id ?       | edit   | Upon saving profile, it will save the updates to the database
+| GET    | /flavor-profile             | show   | Retrieves the users profile and renders it
+| PUT    | /flavor-profile             | edit   | Upon saving profile, it will save the updates to the database
 | GET    | /options                    | show   | Display the users options page
 | PUT    | /options                    | edit   | Upon saving the options/settings, updates the database
 | GET    | /dashboard                  | show   | Displays the statistics to the admin only
@@ -60,28 +59,29 @@ In the top section has an area for some visual representations of the data colle
 ## MODELS
 
 #### **User Model**
-##### Associations: Has one profile and one option
+##### Associations: Has one profile & Can have many flavors
 | ID   | Name | Email          | Password         |
 | ---- |:----:| --------------:| ---------------: |
 | 5    | Tom  | tom@jerry.com  | 3Jc$9m2(m38dnDi2 |
 
-#### **Flavor Profile Model**
+#### **Profile Model**
 ##### Associations: Belongs to one user
-| ID   | UserId | Top Six  ???       | Other Favorites  ???                    |
-| ---- |:------:| ------------------:| --------------------------------------: |
-| 2    | 5      | Users top 6 picks  | The rest of the flavors the user enjoys |
+| ID   | UserId | Top Fav 1 | Top Fav 2 | Top Fav 3 | Top Fav 4 | Top Fav 5 | Top Fav 6 | Birthday | Email Notifications |
+| ---- |:------:| ---------:| ---------:| ---------:| ---------:| ---------:| ---------:| --------:| -------------------:|      
+| 2    | 5      | flavor_id | flavor_id | flavor_id | flavor_id | flavor_id | flavor_id | M/Year   | True or False       |
 
-#### **Option Model**
-##### Associations: Belongs to one User
-| ID   | UserId | BirthMonth       | Recieve Emails | etc  |
-| ---- |:------:| ----------------:| -------------: | ---: |
-| 10   | 5      | Bday Month/Year  | true or false  |      |
 
 #### **Flavor Model**
-##### Associations: none?
+##### Associations: Flavors can have many Users
 | ID   | Name       | Category    | Status      |
-| ---- |:----------:| ----------- | ----------: |
+| ---- |:----------:| ----------: | ----------: |
 | 23   | Chocolate  | Low Fat     | In Rotation |
+
+#### **Users_Flavors Model**
+##### Associations: Join Table (Users can have many Flavors & Flavors can have many Users)
+| ID   | UserId | Flavor_id |
+| ---- |:------:| --------: |
+| 23   | 5      | 45        |
 
 
 ## MODULES I'LL NEED
@@ -97,6 +97,10 @@ In the top section has an area for some visual representations of the data colle
 - passport-local
 - connect-flash
 - express-session
+- async??
+
+#### Extras
+- rowdy-logger
 
 ## API I PLAN ON USING
 - My Own?

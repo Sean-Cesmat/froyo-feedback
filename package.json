@@ -1,0 +1,35 @@
+{
+  "name": "froyo-feedback",
+  "version": "1.0.0",
+  "description": "A full stack node application to get feedback about customers favorite flavors of frozen yogurt.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sean-Cesmat/froyo-feedback.git"
+  },
+  "author": "Sean Cesmat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sean-Cesmat/froyo-feedback/issues"
+  },
+  "homepage": "https://github.com/Sean-Cesmat/froyo-feedback#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "connect-flash": "^0.1.1",
+    "dotenv": "^5.0.0",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pg": "^6.4.2",
+    "pg-hstore": "^2.3.2",
+    "rowdy-logger": "^1.0.0",
+    "sequelize": "^4.34.0"
+  }
+}
