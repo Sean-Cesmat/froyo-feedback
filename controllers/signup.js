@@ -12,7 +12,7 @@ router.post('/', function(req, res) {
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
-      userType: 'admin'
+      // userType: 'admin'
     }
   }).spread(function(user, created) {
     if (created) {

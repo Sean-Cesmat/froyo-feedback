@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var passport = require('./config/ppConfig');
 var isLoggedIn = require('./middleware/isLoggedIn');
+var isAdmin = require('./middleware/isAdmin');
 //var rowdy = require('rowdy-logger');
 
 var app = express();
@@ -43,6 +44,17 @@ app.post('/login', passport.authenticate('local', {
   failureFlash: "Invalid username and/or password"
 }));
 
+app.get('/admin', function(req, res) {
+  res.render('admin_login.ejs');
+});
+
+app.post('/admin', passport.authenticate('local', {
+  successRedirect: '/dashboard',
+  successFlash: 'You have loggin in!',
+  failureRedirect: '/',
+  failureFlash: "Invalid username and/or password"
+}));
+
 app.get('/logout', function(req, res) {
   req.logout();
   console.log('Logged Out');
@@ -52,6 +64,7 @@ app.get('/logout', function(req, res) {
 
 app.use('/profile', require('./controllers/profile'));
 app.use('/signup', require('./controllers/signup'));
+app.use('/dashboard', require('./controllers/dashboard'));
 
 
 var server = app.listen(process.env.PORT || 3000, function() {

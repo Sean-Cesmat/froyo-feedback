@@ -7,14 +7,16 @@
   <body id="home">
     <div class="login-container">
       <img src="/img/WhiteCapLogocolor.png" />
-      <form method="POST" action="/login">
+      <form method="POST" action="/login" class="login-forms">
         <div>
           <i class="material-icons prefix">email</i>
           <input type="text" name="email" placeholder="Email" />
         </div>
-
-        <i class="material-icons prefix">lock</i>
-        <input type="password" name="password" placeholder="Password" />
+        <div>
+          <i class="material-icons prefix">lock</i>
+          <input type="password" name="password" placeholder="Password" />
+          <i class="material-icons password-view-toggle prefix">remove_red_eye</i>
+        </div>
         <input type="submit" class="whitecap-green btn" value="Login" />
       </form>
       <p>
@@ -39,5 +41,6 @@
     </div>
 
     <% include ./partials/footer %>
+    <% include ./partials/alerts %>
   </body>
 </html>

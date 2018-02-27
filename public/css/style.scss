@@ -7,8 +7,18 @@ html {
   height: 100%;
 }
 
-body .whitecap-green.btn {
+body .whitecap-green.btn, body .whitecap-green-bg {
   background: $green !important;
+}
+body .whitecap-blue.btn, body .whitecap-blue-bg {
+  background: $lightBlue !important;
+}
+
+body .whitecap-green-text {
+  color: $green;
+}
+body .whitecap-blue-text {
+  color: $lightBlue;
 }
 
 #home {
@@ -30,5 +40,29 @@ body .whitecap-green.btn {
     width: 275px;
     margin-bottom: 15px;
   }
+}
 
+.login-forms {
+  width: 300px;
+  max-width: 100%;
+  i {
+    color: $lightBlue;
+    margin-right: 5px;
+  }
+  div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    input {
+      margin-bottom: 0px !important;
+    }
+  }
+  .password-view-toggle {
+    font-size: 1rem;
+    color: #ddd;
+    cursor: pointer;
+    &.color-blue{
+      color: $lightBlue;
+    }
+  }
 }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flavors | FroyoFeedback</title>
+    <% include ./partials/head %>
+  </head>
+  <body id="profile">
+
+    <h1>Favorite Flavors</h1>
+
+    <h3>Top 6 Favorite Flavors</h3>
+    <form method="post" action="/profile">
+
+    </form>
+
+    <% flavors.forEach(function(flavor) { %>
+      <div>
+        <% flavor.name %>
+      </div>
+    <% }); %>
+
+
+
+    <% include ./partials/footer %>
+    <% include ./partials/alerts %>
+  </body>
+</html>

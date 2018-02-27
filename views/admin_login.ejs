@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>White Cap Frozen Yogurt | FroyoFeedback</title>
+    <% include ./partials/head %>
+  </head>
+  <body id="home">
+    <div class="login-container">
+      <img src="/img/WhiteCapLogocolor.png" />
+      <form method="POST" action="/admin" class="login-forms">
+        <div>
+          <i class="material-icons prefix">email</i>
+          <input type="text" name="email" placeholder="Email" />
+        </div>
+        <div>
+          <i class="material-icons prefix">lock</i>
+          <input type="password" name="password" placeholder="Password" />
+        </div>
+        <input type="submit" class="whitecap-green btn" value="Login" />
+      </form>
+    </div>
+
+    <% include ./partials/footer %>
+    <% include ./partials/alerts %>
+  </body>
+</html>
