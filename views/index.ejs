@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>White Cap Frozen Yogurt | FroyoFeedback</title>
+    <% include ./partials/head %>
+  </head>
+  <body id="home">
+    <div class="login-container">
+      <img src="/img/WhiteCapLogocolor.png" />
+      <form method="POST" action="/login">
+        <div>
+          <i class="material-icons prefix">email</i>
+          <input type="text" name="email" placeholder="Email" />
+        </div>
+
+        <i class="material-icons prefix">lock</i>
+        <input type="password" name="password" placeholder="Password" />
+        <input type="submit" class="whitecap-green btn" value="Login" />
+      </form>
+      <p>
+        Don't have an account yet? <a class="modal-trigger" href="#signup-modal">Sign-Up</a>
+      </p>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="signup-modal" class="modal">
+      <div class="modal-content">
+        <form method="POST" action="/signup">
+          <i class="material-icons prefix">user</i>
+          <input type="text" name="name" placeholder="Name" />
+          <i class="material-icons prefix">email</i>
+          <input type="text" name="email" placeholder="Email" />
+          <i class="material-icons prefix">lock</i>
+          <input type="password" name="password" placeholder="Password" />
+          <input type="submit" class="modal-action modal-close whitecap-green btn" value="Login" />
+        </form>
+      </div>
+
+    </div>
+
+    <% include ./partials/footer %>
+  </body>
+</html>

@@ -40,7 +40,7 @@ In the top section has an area for some visual representations of the data colle
 
 
 | Verb   | Path                        | Action | Used For |
-| ------ |:---------------------------:| ------:| -------: |
+| ------ |:--------------------------- | :----- | :------  |
 | GET    | /                           | index  | Loads the homepage
 | POST   | /login                      | show   | Authenticates and sends user to their flavor profile
 | POST   | /sign-up                    | create | Creates a new user and send them to their flavor profile

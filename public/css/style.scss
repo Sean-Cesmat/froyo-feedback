@@ -1,0 +1,34 @@
+$darkBlue: #14173e;
+$lightBlue: #2a4d7e;
+$green: #4fb14b;
+$radius: 5px;
+
+html {
+  height: 100%;
+}
+
+body .whitecap-green.btn {
+  background: $green !important;
+}
+
+#home {
+  background: $darkBlue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  .login-container {
+    background: #fff;
+    border-radius: $radius;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px
+  }
+  img {
+    max-width: 100%;
+    width: 275px;
+    margin-bottom: 15px;
+  }
+
+}
