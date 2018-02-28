@@ -1,6 +1,7 @@
 $darkBlue: #14173e;
 $lightBlue: #2a4d7e;
 $green: #4fb14b;
+$gray: #f1f1f1;
 $radius: 5px;
 
 html, body {
@@ -86,4 +87,8 @@ body .whitecap-blue-text {
       max-width: 100%;
     }
   }
+}
+
+#flavor-form {
+  background: $gray;
 }

@@ -5,6 +5,9 @@ var isAdmin = require('../middleware/isAdmin');
 
 router.route('/')
   .get(isAdmin, function(req, res) {
+    db.profile.findAll({
+
+    })
     res.render('dashboard')
   });
 
@@ -18,12 +21,16 @@ router.route('/flavors')
     });
   })
   .post(function(req, res) {
-    console.log('hit the post flavor route');
+    var newStatus = 'out';
+    if (req.body.status === 'on') {
+      newStatus = 'in-rotation';
+    }
     db.flavor.create({
       name: req.body.name,
       flavorType: req.body.flavorType,
-      status: req.body.status
+      status: newStatus
     }).then(function(data) {
+      req.flash('success', 'Your new flavor has been added!');
       res.redirect('/dashboard/flavors')
     });
   });

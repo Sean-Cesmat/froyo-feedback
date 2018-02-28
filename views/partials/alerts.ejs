@@ -2,13 +2,11 @@
 <% if (alerts.error) { %>
   <% alerts.error.forEach(function(msg) { %>
     <script> Materialize.toast('<%= msg %>', 4000); </script>
-
   <% }); %>
 <% } %>
 
 <% if (alerts.success) { %>
   <% alerts.success.forEach(function(msg) { %>
     <script> Materialize.toast('<%= msg %>', 4000); </script>
-
   <% }); %>
 <% } %>

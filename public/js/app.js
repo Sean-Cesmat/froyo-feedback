@@ -3,7 +3,6 @@ $(document).ready(function(){
   $('.modal').modal();
   $('select').material_select();
 
-
   $('.password-view-toggle').on('click', function() {
     console.log($(this).prev().attr('type'));
     if ($(this).prev().attr('type') === 'password') {
