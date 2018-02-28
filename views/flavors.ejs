@@ -10,30 +10,52 @@
         <!-- Grey navigation panel -->
         <% include ./partials/admin_nav %>
       </div>
-      <div class="col s9 main-content">
-        <h1>Flavors</h1>
-        <form method="post" action="/dashboard/flavors" id="flavor-form">
-          <input type="text" name="name" placeholder="Flavor name" />
-          <div class="input-field">
-            <select name="flavorType" form="flavor-form">
-              <option value="" disabled selected>Choose your option</option>
-              <option value="nonfat">NonFat</option>
-              <option value="lowfat">LowFat</option>
-              <option value="nsa">No Sugar Added / NonFat</option>
-              <option value="non-dairy-sorbet">Non-Dairy Sorbet</option>
-              <option value="ams">Almond Milk Swirl</option>
-            </select>
+      <div class="col s9 push-s3 main-content">
+
+    
+          <div class="row">
+            <div class="col s12">
+              <h1>Flavors</h1>
+            </div>
           </div>
-          <p>
-            <input type='radio' name="status" id="in-rotation" value="in-rotation" checked>
-            <label for="in-rotation">In-Rotation</label>
-          </p>
-          <p>
-            <input type='radio' name="status" id="removed-rotation" value="removed">
-            <label for="removed-rotation">Removed From Rotation</label>
-          </p>
-          <input type="submit" value="Add Flavor">
-        </form>
+
+          <form method="post" action="/dashboard/flavors" id="flavor-form">
+            <div class="row">
+              <div class="col s12 m4">
+                <input type="text" name="name" placeholder="Flavor name" />
+              </div>
+              <div class="col s12 m4">
+                <div class="input-field">
+                  <select name="flavorType" form="flavor-form">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="nonfat">NonFat</option>
+                    <option value="lowfat">LowFat</option>
+                    <option value="nsa">No Sugar Added / NonFat</option>
+                    <option value="non-dairy-sorbet">Non-Dairy Sorbet</option>
+                    <option value="ams">Almond Milk Swirl</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col s12 m4">
+                <p>
+                  <input type='radio' name="status" id="in-rotation" value="in-rotation" checked>
+                  <label for="in-rotation">In-Rotation</label>
+                </p>
+                <p>
+                  <input type='radio' name="status" id="removed-rotation" value="removed">
+                  <label for="removed-rotation">Removed From Rotation</label>
+                </p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col s12">
+                <input type="submit" value="Add Flavor">
+              </div>
+            </div>
+          </form>
+
+
 
         <hr />
         <h2>All The Flavors</h2>

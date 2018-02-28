@@ -17,7 +17,16 @@ $(document).ready(function(){
     }
   });
 
-
+  $('#updateProfile').on('submit', function(e) {
+    e.preventDefault();
+    $.ajax({
+      method: 'PUT',
+      url: $(this).attr('action'),
+      data: $(this).serialize()
+    }).done(function(data) {
+      window.reload();
+    });
+  })
 
 
 });

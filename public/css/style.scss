@@ -69,14 +69,19 @@ body .whitecap-blue-text {
   }
 }
 
+.nav-links {
+  margin: 0 auto;
+}
 
-#dashboard, #flavors {
+
+#dashboard, #flavors, #profile {
   & > .row {
     height: 100%;
   }
   .sidebar-nav {
     background: $darkBlue;
     height: 100%;
+    position: fixed;
     img {
       max-width: 100%;
     }
