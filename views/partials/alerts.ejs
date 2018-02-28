@@ -1,30 +1,14 @@
 
 <% if (alerts.error) { %>
   <% alerts.error.forEach(function(msg) { %>
-    <%# Materialize.toast(msg, 4000); %>
-    <h4>msg</h4>
-    <div class="alert modal">
-      <div class="modal-content">
-        <h4>msg</h4>
-      </div>
-      <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-      </div>
-    </div>
+    <script> Materialize.toast('<%= msg %>', 4000); </script>
+
   <% }); %>
 <% } %>
 
 <% if (alerts.success) { %>
   <% alerts.success.forEach(function(msg) { %>
-    <%# Materialize.toast(msg, 4000); %>
-    <h4>msg</h4>
-    <div  class="alert modal">
-      <div class="modal-content">
-        <h4>msg</h4>
-      </div>
-      <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-      </div>
-    </div>
+    <script> Materialize.toast('<%= msg %>', 4000); </script>
+
   <% }); %>
 <% } %>

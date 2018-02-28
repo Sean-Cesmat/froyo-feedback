@@ -4,20 +4,50 @@
     <title>Flavors | FroyoFeedback</title>
     <% include ./partials/head %>
   </head>
-  <body id="profile">
-
-    <h1>Favorite Flavors</h1>
-
-    <h3>Top 6 Favorite Flavors</h3>
-    <form method="post" action="/profile">
-
-    </form>
-
-    <% flavors.forEach(function(flavor) { %>
-      <div>
-        <% flavor.name %>
+  <body id="flavors">
+    <div class="row">
+      <div class="col s3 sidebar-nav">
+        <!-- Grey navigation panel -->
+        <% include ./partials/admin_nav %>
       </div>
-    <% }); %>
+      <div class="col s9 main-content">
+        <h1>Flavors</h1>
+        <form method="post" action="/dashboard/flavors" id="flavor-form">
+          <input type="text" name="name" placeholder="Flavor name" />
+          <div class="input-field">
+            <select name="flavorType" form="flavor-form">
+              <option value="" disabled selected>Choose your option</option>
+              <option value="nonfat">NonFat</option>
+              <option value="lowfat">LowFat</option>
+              <option value="nsa">No Sugar Added / NonFat</option>
+              <option value="non-dairy-sorbet">Non-Dairy Sorbet</option>
+              <option value="ams">Almond Milk Swirl</option>
+            </select>
+          </div>
+          <p>
+            <input type='radio' name="status" id="in-rotation" value="in-rotation" checked>
+            <label for="in-rotation">In-Rotation</label>
+          </p>
+          <p>
+            <input type='radio' name="status" id="removed-rotation" value="removed">
+            <label for="removed-rotation">Removed From Rotation</label>
+          </p>
+          <input type="submit" value="Add Flavor">
+        </form>
+
+        <hr />
+        <h2>All The Flavors</h2>
+        <% flavors.forEach(function(flavor) { %>
+          <div>
+            <h4><%= flavor.name %></h4>
+            <p>
+              <%= flavor.flavorType %> (<%= flavor.status %>)
+            </p>
+          </div>
+        <% }); %>
+
+      </div> <!-- END CONTENT AREA -->
+    </div> <!-- END ROW -->
 
 
 

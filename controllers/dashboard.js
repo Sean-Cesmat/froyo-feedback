@@ -13,11 +13,19 @@ router.route('/')
 router.route('/flavors')
   .get(isAdmin, function(req, res) {
     db.flavor.findAll().then(function(flavors) {
+      // res.send(flavors);
       res.render('flavors', {flavors: flavors});
     });
   })
   .post(function(req, res) {
-
+    console.log('hit the post flavor route');
+    db.flavor.create({
+      name: req.body.name,
+      flavorType: req.body.flavorType,
+      status: req.body.status
+    }).then(function(data) {
+      res.redirect('/dashboard/flavors')
+    });
   });
 // End /dashboard '/flavors'
 

@@ -3,7 +3,7 @@ $lightBlue: #2a4d7e;
 $green: #4fb14b;
 $radius: 5px;
 
-html {
+html, body {
   height: 100%;
 }
 
@@ -27,14 +27,6 @@ body .whitecap-blue-text {
   justify-content: center;
   align-items: center;
   height: 100%;
-  .login-container {
-    background: #fff;
-    border-radius: $radius;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 25px
-  }
   img {
     max-width: 100%;
     width: 275px;
@@ -42,9 +34,19 @@ body .whitecap-blue-text {
   }
 }
 
+.login-container {
+  background: #fff;
+  border-radius: $radius;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px 5vw;
+}
+
 .login-forms {
   width: 300px;
   max-width: 100%;
+  text-align: center;
   i {
     color: $lightBlue;
     margin-right: 5px;
@@ -63,6 +65,20 @@ body .whitecap-blue-text {
     cursor: pointer;
     &.color-blue{
       color: $lightBlue;
+    }
+  }
+}
+
+
+#dashboard, #flavors {
+  & > .row {
+    height: 100%;
+  }
+  .sidebar-nav {
+    background: $darkBlue;
+    height: 100%;
+    img {
+      max-width: 100%;
     }
   }
 }
