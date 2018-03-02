@@ -47,8 +47,6 @@ In the top section has an area for some visual representations of the data colle
 | GET    | /logout                     | index  | Logs out the user and redirects to the homepage
 | GET    | /flavor-profile             | show   | Retrieves the users profile and renders it
 | PUT    | /flavor-profile             | edit   | Upon saving profile, it will save the updates to the database
-| GET    | /options                    | show   | Display the users options page
-| PUT    | /options                    | edit   | Upon saving the options/settings, updates the database
 | GET    | /dashboard                  | show   | Displays the statistics to the admin only
 | GET    | /dashboard/flavors          | show   | Retrieves the flavors available to the flavor profiles
 | POST   | /dashboard/flavors          | create | Creates a new flavor option to the customers flavor profiles
@@ -83,6 +81,10 @@ In the top section has an area for some visual representations of the data colle
 | ---- |:------:| --------: |
 | 23   | 5      | 45        |
 
+## Things I need to do
+  - ~~Wireframes~~
+  - ~~Create Models~~
+  - 
 
 ## MODULES I'LL NEED
 - express

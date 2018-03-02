@@ -6,13 +6,36 @@
   </head>
   <body id="dashboard">
     <div class="row">
-      <div class="col s3 sidebar-nav">
+      <div class="col s3 sidebar-nav z-depth-3">
         <!-- Grey navigation panel -->
         <% include ./partials/admin_nav %>
       </div>
       <div class="col s9 push-s3 main-content">
-        <h1>Dashboard</h1>
-        <h3>Favorite Flavors</h3>
+        <div class="row">
+          <div class="col s12">
+            <h1>Dashboard</h1>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12 m6 border-radius">
+            <div class="gray-card">
+              <h5 class="graphTitle">Top Favorited Flavors</h5>
+              <canvas id="topSixFavChart" width="400" height="400"></canvas>
+            </div>
+          </div>
+          <div class="col s12 m6">
+            <div class="gray-card">
+              <h5 class="graphTitle">Top Liked Flavors</h5>
+              <canvas id="likeBarChart" width="400" height="400"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+
+        </div>
 
       </div>
     </div>
@@ -24,5 +47,74 @@
 
     <% include ./partials/footer %>
     <% include ./partials/alerts %>
+
+    <% var favoritesNames = []; %>
+    <% var likesNames = []; %>
+    <% var favoritesTotals = []; %>
+    <% var likesTotals = []; %>
+    <% for (var i = 0; i < 8; i++) { %>
+      <% var name = flavorIdNameObj[parseInt(favoritesCount[i].flavorId)]; %>
+      <% favoritesNames.push(name + ' (' + favoritesCount[i].count + ')' );  %>
+      <% favoritesTotals.push(parseInt(favoritesCount[i].count)); %>
+    <% } %>
+    <% likesCount.forEach(function(like, i) { %>
+      <% var name = flavorIdNameObj[parseInt(likesCount[i].flavorId)]; %>
+      <% likesNames.push(name + ' (' + likesCount[i].count + ')' );  %>
+      <% likesTotals.push(parseInt(likesCount[i].count)); %>
+    <% }); %>
+
+
+    <script>
+      var ctx = document.getElementById("topSixFavChart").getContext('2d');
+      var ctx2 = document.getElementById("likeBarChart").getContext('2d');
+
+      var topSixFavChart = new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+              datasets: [{
+                  data: [<%= favoritesTotals %>],
+                  backgroundColor: [
+                    '#eb3687',
+                    '#5a36eb',
+                    '#36a2eb',
+                    '#36eba4',
+                    '#55eb36',
+                    '#ebde36',
+                    '#eb8736',
+                    '#eb4c36'
+                  ]
+              }],
+
+              // These labels appear in the legend and in the tooltips when hovering different arcs
+              labels: <%- JSON.stringify(favoritesNames) %>
+
+          }
+
+      });
+
+      var likeBarChart = new Chart(ctx2, {
+          type: 'horizontalBar',
+          data: {
+            datasets: [{
+              data: [<%= likesTotals %>],
+              backgroundColor: [
+                '#eb3687',
+                '#5a36eb',
+                '#36a2eb',
+                '#36eba4',
+                '#55eb36',
+                '#ebde36',
+                '#eb8736',
+                '#eb4c36'
+              ]
+            }],
+
+            labels: <%- JSON.stringify(likesNames) %>
+          },
+          // options: options
+      });
+
+
+      </script>
   </body>
 </html>

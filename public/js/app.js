@@ -4,7 +4,6 @@ $(document).ready(function(){
   $('select').material_select();
 
   $('.password-view-toggle').on('click', function() {
-    console.log($(this).prev().attr('type'));
     if ($(this).prev().attr('type') === 'password') {
       $(this).prev().attr('type', 'text');
       $(this).addClass('color-blue');
@@ -21,7 +20,7 @@ $(document).ready(function(){
     $.ajax({
       method: 'PUT',
       url: $(this).attr('action'),
-      data: $(this).serialize()
+      data: $(this).serialize(),
     }).done(function(data) {
       window.reload();
     });

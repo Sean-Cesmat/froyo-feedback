@@ -6,7 +6,7 @@
   </head>
   <body id="profile">
     <div class="row">
-      <div class="col s3 sidebar-nav">
+      <div class="col s3 sidebar-nav z-depth-3">
         <!-- Grey navigation panel -->
         <% include ../partials/admin_nav %>
       </div>
@@ -15,12 +15,21 @@
 
         <h3>Top 6 Favorite Flavors</h3>
         <div class="row">
+          <% var topSix = []; %>
+          <% var allLikes = []; %>
+          <% favorites.forEach(function(favorite)  { %>
+            <% topSix.push(favorite.flavorId); %>
+          <% }); %>
+          <% likes.forEach(function(like)  { %>
+            <% allLikes.push(like.flavorId); %>
+          <% }); %>
+
           <div class="col s4">
             <div class="input-field">
               <select name="topFlavor1" form="updateProfile">
                 <option value="" disabled selected>Choose your option</option>
                 <% flavors.forEach(function(flavor) { %>
-                  <option value="<%= flavor.id %>" <% if (profile.topFlavor1 === flavor.id) {%> selected<%} %> ><%= flavor.name %></option>
+                  <option value="<%= flavor.id %>" <% if (topSix[0] === flavor.id) {%> selected<%} %> ><%= flavor.name %></option>
                 <% }); %>
               </select>
             </div>
@@ -29,7 +38,7 @@
               <select name="topFlavor2" form="updateProfile">
                 <option value="" disabled selected>Choose your option</option>
                 <% flavors.forEach(function(flavor) { %>
-                  <option value="<%= flavor.id %>" <% if (profile.topFlavor2 === flavor.id) {%> selected<%} %> ><%= flavor.name %></option>
+                  <option value="<%= flavor.id %>" <% if (topSix[1] === flavor.id) {%> selected<%} %> ><%= flavor.name %></option>
                 <% }); %>
               </select>
             </div>
@@ -41,7 +50,7 @@
               <select name="topFlavor3" form="updateProfile">
                 <option value="" disabled selected>Choose your option</option>
                 <% flavors.forEach(function(flavor) { %>
-                  <option value="<%= flavor.id %>" <% if (profile.topFlavor3 === flavor.id) {%> selected<%} %> ><%= flavor.name %></option>
+                  <option value="<%= flavor.id %>" <% if (topSix[2] === flavor.id) {%> selected<%} %> ><%= flavor.name %></option>
                 <% }); %>
               </select>
             </div>
@@ -50,7 +59,7 @@
               <select name="topFlavor4" form="updateProfile">
                 <option value="" disabled selected>Choose your option</option>
                 <% flavors.forEach(function(flavor) { %>
-                  <option value="<%= flavor.id %>" <% if (profile.topFlavor4 === flavor.id) {%> selected<%} %> ><%= flavor.name %></option>
+                  <option value="<%= flavor.id %>" <% if (topSix[3] === flavor.id) {%> selected<%} %> ><%= flavor.name %></option>
                 <% }); %>
               </select>
             </div>
@@ -60,7 +69,7 @@
               <select name="topFlavor5" form="updateProfile">
                 <option value="" disabled selected>Choose your option</option>
                 <% flavors.forEach(function(flavor) { %>
-                  <option value="<%= flavor.id %>" <% if (profile.topFlavor5 === flavor.id) {%> selected<%} %> ><%= flavor.name %></option>
+                  <option value="<%= flavor.id %>" <% if (topSix[4] === flavor.id) {%> selected<%} %> ><%= flavor.name %></option>
                 <% }); %>
               </select>
             </div>
@@ -69,7 +78,7 @@
               <select name="topFlavor6" form="updateProfile">
                 <option value="" disabled selected>Choose your option</option>
                 <% flavors.forEach(function(flavor) { %>
-                  <option value="<%= flavor.id %>" <% if (profile.topFlavor6 === flavor.id) {%> selected<%} %> ><%= flavor.name %></option>
+                  <option value="<%= flavor.id %>" <% if (topSix[5] === flavor.id) {%> selected<%} %> ><%= flavor.name %></option>
                 <% }); %>
               </select>
             </div>
@@ -81,10 +90,10 @@
           <div class="row">
             <div class="col">
               <h4>NonFat</h4>
-              <% flavors.forEach(function(flavor) { %>
+              <% flavors.forEach(function(flavor, id) { %>
                 <% if (flavor.flavorType === 'nonfat' && flavor.status === 'in-rotation') { %>
                   <p>
-                    <input type="checkbox" id="<%= flavor.id %>" data-flavorname="<%= flavor.name %>">
+                    <input type="checkbox" id="<%= flavor.id %>" name="<%= flavor.id %>" <% if (allLikes[id] === flavor.id) {%> checked<%} %> >
                     <label for="<%= flavor.id %>"><%= flavor.name %></label>
                   </p>
                 <% } %>
@@ -95,7 +104,7 @@
               <% flavors.forEach(function(flavor) { %>
                 <% if (flavor.flavorType === 'lowfat' && flavor.status === 'in-rotation') { %>
                   <p>
-                    <input type="checkbox" id="<%= flavor.id %>" data-flavorname="<%= flavor.name %>">
+                    <input type="checkbox" id="<%= flavor.id %>" name="<%= flavor.id %>" <% if (allLikes[id] === flavor.id) {%> checked<%} %> >
                     <label for="<%= flavor.id %>"><%= flavor.name %></label>
                   </p>
                 <% } %>
@@ -105,7 +114,7 @@
               <% flavors.forEach(function(flavor) { %>
                 <% if (flavor.flavorType === 'nsa' && flavor.status === 'in-rotation') { %>
                   <p>
-                    <input type="checkbox" id="<%= flavor.id %>" data-flavorname="<%= flavor.name %>">
+                    <input type="checkbox" id="<%= flavor.id %>" name="<%= flavor.id %>" <% if (allLikes[id] === flavor.id) {%> checked<%} %> >
                     <label for="<%= flavor.id %>"><%= flavor.name %></label>
                   </p>
                 <% } %>
@@ -116,7 +125,7 @@
               <% flavors.forEach(function(flavor) { %>
                 <% if (flavor.flavorType === 'non-dairy-sorbet' && flavor.status === 'in-rotation') { %>
                   <p>
-                    <input type="checkbox" id="<%= flavor.id %>" data-flavorname="<%= flavor.name %>">
+                    <input type="checkbox" id="<%= flavor.id %>" name="<%= flavor.id %>" <% if (allLikes[id] === flavor.id) {%> checked<%} %> >
                     <label for="<%= flavor.id %>"><%= flavor.name %></label>
                   </p>
                 <% } %>
@@ -126,14 +135,13 @@
               <% flavors.forEach(function(flavor) { %>
                 <% if (flavor.flavorType === 'ams' && flavor.status === 'in-rotation') { %>
                   <p>
-                    <input type="checkbox" id="<%= flavor.id %>" data-flavorname="<%= flavor.name %>">
+                    <input type="checkbox" id="<%= flavor.id %>"  name="<%= flavor.id %>" <% if (allLikes[id] === flavor.id) {%> checked<%} %> >
                     <label for="<%= flavor.id %>"><%= flavor.name %></label>
                   </p>
                 <% } %>
               <% }); %>
             </div>
           </div> <!-- END ROW -->
-
           <input type="submit" value="submit">
         </form>
       </div>

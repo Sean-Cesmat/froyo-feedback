@@ -5,19 +5,47 @@ var isAdmin = require('../middleware/isAdmin');
 
 router.route('/')
   .get(isAdmin, function(req, res) {
-    db.profile.findAll({
+    var query = 'SELECT "flavorId", COUNT(*) ' +
+                'FROM favorites_users_flavors ' +
+                'GROUP BY "flavorId" ' +
+                'ORDER by COUNT(*) DESC;';
+    db.sequelize.query(query).then(function(favoritesCount) {
+      // res.send(favoritesCount)
+      var flavorIdNameObj = {};
 
-    })
-    res.render('dashboard')
+      var query = 'SELECT "flavorId", COUNT(*) ' +
+                  'FROM users_flavors ' +
+                  'GROUP BY "flavorId" ' +
+                  'ORDER by COUNT(*) DESC;';
+      db.sequelize.query(query).then(function(likesCount) {
+
+        db.flavor.findAll().then(function(flavors) {
+
+          flavors.forEach(function(flavor) {
+            flavorIdNameObj[flavor.id] = flavor.name;
+          });
+
+          res.render('dashboard', {
+            favoritesCount: favoritesCount[0],
+            likesCount: likesCount[0],
+            flavors: flavors,
+            flavorIdNameObj: flavorIdNameObj
+          });
+        });
+      });
+    });
   });
 
 // END /dashboard '/' route
 
 router.route('/flavors')
   .get(isAdmin, function(req, res) {
-    db.flavor.findAll().then(function(flavors) {
+    var query = 'SELECT * ' +
+                'FROM flavors ' +
+                'ORDER by name;';
+    db.sequelize.query(query).then(function(flavors) {
       // res.send(flavors);
-      res.render('flavors', {flavors: flavors});
+      res.render('flavors', {flavors: flavors[0]});
     });
   })
   .post(function(req, res) {

@@ -4,6 +4,8 @@ $green: #4fb14b;
 $gray: #f1f1f1;
 $radius: 5px;
 
+
+/* =========== GENERAL ===========*/
 html, body {
   height: 100%;
 }
@@ -14,14 +16,50 @@ body .whitecap-green.btn, body .whitecap-green-bg {
 body .whitecap-blue.btn, body .whitecap-blue-bg {
   background: $lightBlue !important;
 }
-
 body .whitecap-green-text {
   color: $green;
 }
 body .whitecap-blue-text {
   color: $lightBlue;
 }
+.border-radius {
+  border-radius: $radius;
+}
 
+.nav-links {
+  margin: 0 auto;
+  width: 80%;
+  li {
+    text-align: center;
+    padding: 5px 20px;
+    background: rgba(255,255,255,.1);
+    margin: 5px 0px;
+    border-radius: $radius;
+  }
+  a {
+    background: none;
+    font-size: 1.5rem;
+    color: $gray;
+  }
+}
+
+.gray-card {
+    /* z-depth-2 */
+    -webkit-box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+    background-color: $gray;
+    border-radius: $radius;
+    canvas {
+      padding: 5%;
+    }
+
+}
+
+
+
+/* =========== PAGES ===========*/
+
+/* === HOME === */
 #home {
   background: $darkBlue;
   display: flex;
@@ -70,9 +108,6 @@ body .whitecap-blue-text {
   }
 }
 
-.nav-links {
-  margin: 0 auto;
-}
 
 
 #dashboard, #flavors, #profile {
@@ -83,6 +118,9 @@ body .whitecap-blue-text {
     background: $darkBlue;
     height: 100%;
     position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     img {
       max-width: 100%;
     }
@@ -91,4 +129,39 @@ body .whitecap-blue-text {
 
 #flavor-form {
   background: $gray;
+}
+
+#dashboard {
+  .graphTitle {
+    text-align: center;
+    padding-top: 10px;
+  }
+  .dashboardLink {
+    background: $green;
+    color: #fff;
+  }
+}
+
+#flavors {
+  .flavorsLink {
+    background: $green;
+    color: #fff;
+  }
+  input[type="text"] {
+    margin-bottom: 0px;
+  }
+  .input-field {
+    margin-top: 0px;
+  }
+  form {
+    .gray-card {
+      padding: 24px 5px;
+    }
+    .col {
+      text-align: center;
+    }
+    .row {
+      margin-bottom: 0px;
+    }
+  }
 }

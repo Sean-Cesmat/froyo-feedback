@@ -43,6 +43,7 @@ module.exports = (sequelize, DataTypes) => {
   user.associate = function(models) {
     // associations can be defined here
     models.user.belongsToMany(models.flavor, {through: models.users_flavors});
+    models.user.hasMany(models.favorites_users_flavors);
     models.user.hasOne(models.profile);
   };
   user.prototype.validPassword = function(passwordTyped) {

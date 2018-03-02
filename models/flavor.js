@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   flavor.associate = function(models) {
     // associations can be defined here
     models.flavor.belongsToMany(models.user, {through: models.users_flavors});
+    models.flavor.hasMany(models.favorites_users_flavors);
   };
   return flavor;
 };
