@@ -190,6 +190,9 @@ body .whitecap-blue-text {
     .gray-card {
       padding: 1px 1.5vw 15px;
       margin-bottom: 15px;
+      h4 {
+        color: $lightBlue;
+      }
     }
     .submit-container {
       text-align: center;
@@ -197,6 +200,12 @@ body .whitecap-blue-text {
         font-size: 1.5rem;
 
       }
+    }
+    input[type="checkbox"]+label {
+      color: $darkBlue;
+    }
+    input[type="checkbox"]:checked+label {
+      color: $green;
     }
     input[type="checkbox"]:checked+label:before {
       border-right: 2px solid #57b235 !important;
@@ -210,12 +219,30 @@ body .whitecap-blue-text {
   .input-field {
     background: $gray;
     border-radius: 3px;
+    margin-top: 0px;
   }
   .select-dropdown {
     border-radius: 3px;
+    padding: 0 10px;
+    border: none;
+    span.caret {
+      padding-right: 5px;
+    }
   }
   .green-card {
     text-align: center;
+  }
+  .avatar {
+    text-align: center;
+    color: #fff !important;
+    h5 {
+      font-family: sans-serif;
+    }
+    img {
+      border-radius: 100%;
+      border: 7px solid #fff;
+      width: 140px;
+    }
   }
 
 }

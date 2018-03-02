@@ -16,24 +16,13 @@
       <% allLikes.push(like.flavorId); %>
     <% }); %>
 
-    <% var printFlavorTypes = function(type){ %>
-      <% if (type === 'nonfat') { %>NonFat
-        <% } else if (type === 'lowfat') { %>LowFat
-          <% } else if (type === 'nsa') { %>No Sugar Added
-            <% } else if (type === 'non-dairy-sorbet') { %>Non-Dairy Sorbet
-              <% } else if (type === 'ams') { %>Almond Milk
-                <% } %>
-    <% } %>
-
     <% var topFlavorsOptions = function(num) { %>
-      <% var thing = 'topFlavor'  + num; %>
+      <% var topFlavorNum = 'topFlavor'  + num; %>
       <div class="input-field">
         <select name="topFlavor<%= num %>" form="updateProfile">
           <option value="" disabled selected>Choose your option</option>
           <% flavors.forEach(function(flavor) { %>
-            <option value="<%= flavor.id %>" <% if (profile[0][thing] === flavor.id) {%> selected<%} %> >
-              <%= flavor.name %> [<%= printFlavorTypes(flavor.flavorType)  %>]
-            </option>
+            <option value="<%= flavor.id %>" <% if (profile[0][topFlavorNum] === flavor.id) {%> selected<%} %> ><%= flavor.name %> [<%= flavor.flavorType %>]</option>
           <% }); %>
         </select>
       </div>
@@ -61,61 +50,98 @@
 <!-- ========= BEGINING OF PAGE CONTENT ============= -->
     <div class="row">
       <div class="col s3 sidebar-nav z-depth-3">
-        <!-- Grey navigation panel -->
-        <% include ../partials/nav %>
+        <img src="/img/whitecaplogo_white.png">
+
+        <ul class="nav-links">
+          <div class="avatar">
+            <img src="http://api.adorable.io/avatar/<%= user.email %>" >
+            <h5><%= user.email %></h5>
+          </div>
+
+          <a href="/profile">
+            <li class="profileLink">
+              Profile
+            </li>
+          </a>
+          <!-- <a href="/profile/options">
+            <li class="optionsLink">
+              Options
+            </li>
+          </a> -->
+
+        </ul>
+        <a class="whitecap-blue btn" href="/logout">Logout</a>
       </div>
+
       <div class="col s9 push-s3 main-content">
-        <div class="green-card">
-          <h3>Top 6 Favorite Flavors</h3>
-          <div class="row">
-            <div class="col s4">
-              <% topFlavorsOptions(1); %>
-              <% topFlavorsOptions(2); %>
-            </div>
 
-            <div class="col s4">
-              <% topFlavorsOptions(3); %>
-              <% topFlavorsOptions(4); %>
-            </div>
+        <div class="row">
+          <div class="col s12">
+            <div class="green-card">
+              <h3>Top 6 Favorite Flavors</h3>
 
-            <div class="col s4">
-              <% topFlavorsOptions(5); %>
-              <% topFlavorsOptions(6); %>
+              <div class="row">
+                <div class="col s6 m6 l4">
+                  <% topFlavorsOptions(1); %>
+                </div>
+
+                <div class="col s6 m6 l4">
+                  <% topFlavorsOptions(2); %>
+                </div>
+
+                <div class="col s6 m6 l4">
+                  <% topFlavorsOptions(3); %>
+                </div>
+
+                <div class="col s6 m6 l4">
+                  <% topFlavorsOptions(4); %>
+                </div>
+
+                <div class="col s6 m6 l4">
+                  <% topFlavorsOptions(5); %>
+                </div>
+
+                <div class="col s6 m6 l4">
+                  <% topFlavorsOptions(6); %>
+                </div>
+              </div>
+
             </div>
           </div>
-        </div>
+
+        </div><!-- END ROW -->
 
         <form method="put" id="updateProfile" action="/profile">
 
           <div class="row">
-            <div class="col s12 m4">
+            <div class="col s12 m6 l4">
               <div class="gray-card">
                 <h4>NonFat</h4>
-                <% flavorLikeOptions('nonfat') %>
+                <% flavorLikeOptions('NonFat') %>
               </div>
             </div>
 
-            <div class="col s12 m4">
+            <div class="col s12 m6 l4">
               <div class="gray-card">
                 <h4>LowFat</h4>
-                <% flavorLikeOptions('lowfat') %>
+                <% flavorLikeOptions('LowFat') %>
               </div>
 
               <div class="gray-card">
                 <h4>No Sugar Added</h4>
-                <% flavorLikeOptions('nsa') %>
+                <% flavorLikeOptions('No Sugar Added') %>
               </div>
             </div>
 
-            <div class="col s12 m4">
+            <div class="col s12 m6 l4">
               <div class="gray-card">
                 <h4>Non-Dairy Sorbet</h4>
-                <% flavorLikeOptions('non-dairy-sorbet') %>
+                <% flavorLikeOptions('Non-Dairy Sorbet') %>
               </div>
 
               <div class="gray-card">
                 <h4>Almond Milk</h4>
-                <% flavorLikeOptions('ams') %>
+                <% flavorLikeOptions('Almond Milk') %>
               </div>
             </div>
           </div> <!-- END ROW -->
@@ -132,5 +158,6 @@
 
     <% include ../partials/footer %>
     <% include ../partials/alerts %>
+
   </body>
 </html>

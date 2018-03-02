@@ -16,8 +16,13 @@ router.route('/')
           db.users_flavors.findAll({
             where: {userId: req.user.id}
           }).then(function(likes) {
-            //res.send(profile);
-            res.render('profile/show', {flavors: flavors, favorites: favorites, likes: likes, profile: profile});
+            db.user.findById(req.user.id).then(function(user){
+
+                res.render('profile/show', {flavors: flavors, favorites: favorites, likes: likes, profile: profile, user: user});
+
+            }); //END THEN
+
+
           });
         });
       })

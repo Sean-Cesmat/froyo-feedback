@@ -2,13 +2,13 @@
 <html>
   <head>
     <title>Flavors | FroyoFeedback</title>
-    <% include ./partials/head %>
+    <% include ../partials/head %>
   </head>
   <body id="flavors">
     <div class="row">
       <div class="col s3 sidebar-nav">
         <!-- Grey navigation panel -->
-        <% include ./partials/admin_nav %>
+        <% include ../partials/admin_nav %>
       </div>
       <div class="col s9 push-s3 main-content">
 
@@ -24,11 +24,11 @@
                   <div class="input-field">
                     <select name="flavorType" form="flavor-form">
                       <option value="" disabled selected>Choose your option</option>
-                      <option value="nonfat">NonFat</option>
-                      <option value="lowfat">LowFat</option>
-                      <option value="nsa">No Sugar Added / NonFat</option>
-                      <option value="non-dairy-sorbet">Non-Dairy Sorbet</option>
-                      <option value="ams">Almond Milk Swirl</option>
+                      <option value="NonFat">NonFat</option>
+                      <option value="LowFat">LowFat</option>
+                      <option value="No Sugar Added">No Sugar Added / NonFat</option>
+                      <option value="Non-Dairy Sorbet">Non-Dairy Sorbet</option>
+                      <option value="Almond Milk">Almond Milk</option>
                     </select>
                   </div>
                 </div>
@@ -52,23 +52,9 @@
           </form>
 
 
-
-        <hr />
         <h2>All The Flavors</h2>
         <% var printFlavors = function(type){ %>
-          <h4>
-          <% if (type === 'nonfat') { %>
-              NonFat
-          <% } else if (type === 'lowfat') { %>
-              LowFat
-          <% } else if (type === 'nsa') { %>
-              No Sugar Added
-          <% } else if (type === 'non-dairy-sorbet') { %>
-              Non-Dairy Sorbet
-          <% } else if (type === 'ams') { %>
-              Almond Milk
-          <% } %>
-          </h4>
+          <h4><%= type %></h4>
           <% flavors.forEach(function(flavor) { %>
             <% if (flavor.flavorType === type) { %>
               <div>
@@ -83,15 +69,15 @@
         <% } %>
         <div class="row">
           <div class="col s12 m4">
-            <% printFlavors('nonfat') %>
+            <% printFlavors('NonFat') %>
           </div>
           <div class="col s12 m4">
-            <% printFlavors('lowfat') %>
-            <% printFlavors('nsa') %>
+            <% printFlavors('LowFat') %>
+            <% printFlavors('No Sugar Added') %>
           </div>
           <div class="col s12 m4">
-            <% printFlavors('non-dairy-sorbet') %>
-            <% printFlavors('ams') %>
+            <% printFlavors('Non-Dairy Sorbet') %>
+            <% printFlavors('Almond Milk') %>
           </div>
         </div>
 
@@ -102,7 +88,7 @@
 
 
 
-    <% include ./partials/footer %>
-    <% include ./partials/alerts %>
+    <% include ../partials/footer %>
+    <% include ../partials/alerts %>
   </body>
 </html>

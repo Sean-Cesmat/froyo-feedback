@@ -6,11 +6,11 @@ var session = require('express-session');
 var passport = require('./config/ppConfig');
 var isLoggedIn = require('./middleware/isLoggedIn');
 var isAdmin = require('./middleware/isAdmin');
-//var rowdy = require('rowdy-logger');
+// var rowdy = require('rowdy-logger');
 
 var app = express();
 
-// rowdy.begin(app);
+// var rowdyResults = rowdy.begin(app)
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -68,7 +68,7 @@ app.use('/dashboard', require('./controllers/dashboard'));
 
 
 var server = app.listen(process.env.PORT || 3000, function() {
-  //rowdy.print();
+  // rowdyResults.print();
 });
 
 module.exports = server;

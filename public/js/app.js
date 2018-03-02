@@ -14,7 +14,7 @@ $(document).ready(function(){
       }
     }
   });
-
+  
   $('#updateProfile').on('submit', function(e) {
     e.preventDefault();
     $.ajax({

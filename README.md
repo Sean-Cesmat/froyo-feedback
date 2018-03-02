@@ -87,7 +87,7 @@ In the top section has an area for some visual representations of the data colle
   -
 
   - Add Edit/Delete Routes for flavors
-  - Add API stuff
+  - ~~Add API~~
   - Add Other Charts
   - ~~Add Ability to store likes~~
   - ~~Add old db call back in for favorite Flavors~~
@@ -111,8 +111,8 @@ In the top section has an area for some visual representations of the data colle
 #### Extras
 - rowdy-logger
 
-## API I PLAN ON USING
-- My Own?
+## API USED
+- http://avatars.adorable.io/
 
 ## CREDITS | THINGS I USED
 - Materialize

@@ -45,7 +45,7 @@ router.route('/flavors')
                 'ORDER by name;';
     db.sequelize.query(query).then(function(flavors) {
       // res.send(flavors);
-      res.render('flavors', {flavors: flavors[0]});
+      res.render('flavors/flavors', {flavors: flavors[0]});
     });
   })
   .post(function(req, res) {
