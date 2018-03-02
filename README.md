@@ -84,7 +84,14 @@ In the top section has an area for some visual representations of the data colle
 ## Things I need to do
   - ~~Wireframes~~
   - ~~Create Models~~
-  - 
+  -
+
+  - Add Edit/Delete Routes for flavors
+  - Add API stuff
+  - Add Other Charts
+  - ~~Add Ability to store likes~~
+  - ~~Add old db call back in for favorite Flavors~~
+
 
 ## MODULES I'LL NEED
 - express

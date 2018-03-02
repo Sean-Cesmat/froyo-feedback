@@ -2,85 +2,85 @@
 <html>
   <head>
     <title>Your Profile | FroyoFeedback</title>
-    <% include ../partials/head %>
+    <%- include ../partials/head %>
   </head>
   <body id="profile">
+<!-- ========= JAVASCRIPT FUNCTIONS ============= -->
+    <% var topSix = []; %>
+    <% var allLikes = []; %>
+
+    <% favorites.forEach(function(favorite)  { %>
+      <% topSix.push(favorite.flavorId); %>
+    <% }); %>
+    <% likes.forEach(function(like)  { %>
+      <% allLikes.push(like.flavorId); %>
+    <% }); %>
+
+    <% var printFlavorTypes = function(type){ %>
+      <% if (type === 'nonfat') { %>NonFat
+        <% } else if (type === 'lowfat') { %>LowFat
+          <% } else if (type === 'nsa') { %>No Sugar Added
+            <% } else if (type === 'non-dairy-sorbet') { %>Non-Dairy Sorbet
+              <% } else if (type === 'ams') { %>Almond Milk
+                <% } %>
+    <% } %>
+
+    <% var topFlavorsOptions = function(num) { %>
+      <% var thing = 'topFlavor'  + num; %>
+      <div class="input-field">
+        <select name="topFlavor<%= num %>" form="updateProfile">
+          <option value="" disabled selected>Choose your option</option>
+          <% flavors.forEach(function(flavor) { %>
+            <option value="<%= flavor.id %>" <% if (profile[0][thing] === flavor.id) {%> selected<%} %> >
+              <%= flavor.name %> [<%= printFlavorTypes(flavor.flavorType)  %>]
+            </option>
+          <% }); %>
+        </select>
+      </div>
+    <% } %>
+    <% var flavorLikeOptions = function(type) { %>
+      <% console.log(allLikes);%>
+      <% flavors.forEach(function(flavor, id) { %>
+        <% if (flavor.flavorType === type && flavor.status === 'in-rotation') { %>
+          <% var likedFlavor = false; %>
+          <% allLikes.forEach(function(liked){ %>
+            <% if (liked === flavor.id) { %>
+              <% likedFlavor = true; %>
+            <% } %>
+          <% }); %>
+          <p>
+            <input type="checkbox" id="<%= flavor.id %>" name="<%= flavor.id %>" <% if (likedFlavor) {%> checked<%} %> >
+            <label for="<%= flavor.id %>"><%= flavor.name %></label>
+          </p>
+        <% } %>
+      <% }); %>
+    <% }; %>
+<!-- ========= END OF JAVASCRIPT FUNCTIONS ============= -->
+
+
+<!-- ========= BEGINING OF PAGE CONTENT ============= -->
     <div class="row">
       <div class="col s3 sidebar-nav z-depth-3">
         <!-- Grey navigation panel -->
-        <% include ../partials/admin_nav %>
+        <% include ../partials/nav %>
       </div>
       <div class="col s9 push-s3 main-content">
-        <h1>Favorite Flavors</h1>
-
-        <h3>Top 6 Favorite Flavors</h3>
-        <div class="row">
-          <% var topSix = []; %>
-          <% var allLikes = []; %>
-          <% favorites.forEach(function(favorite)  { %>
-            <% topSix.push(favorite.flavorId); %>
-          <% }); %>
-          <% likes.forEach(function(like)  { %>
-            <% allLikes.push(like.flavorId); %>
-          <% }); %>
-
-          <div class="col s4">
-            <div class="input-field">
-              <select name="topFlavor1" form="updateProfile">
-                <option value="" disabled selected>Choose your option</option>
-                <% flavors.forEach(function(flavor) { %>
-                  <option value="<%= flavor.id %>" <% if (topSix[0] === flavor.id) {%> selected<%} %> ><%= flavor.name %></option>
-                <% }); %>
-              </select>
+        <div class="green-card">
+          <h3>Top 6 Favorite Flavors</h3>
+          <div class="row">
+            <div class="col s4">
+              <% topFlavorsOptions(1); %>
+              <% topFlavorsOptions(2); %>
             </div>
 
-            <div class="input-field">
-              <select name="topFlavor2" form="updateProfile">
-                <option value="" disabled selected>Choose your option</option>
-                <% flavors.forEach(function(flavor) { %>
-                  <option value="<%= flavor.id %>" <% if (topSix[1] === flavor.id) {%> selected<%} %> ><%= flavor.name %></option>
-                <% }); %>
-              </select>
-            </div>
-          </div>
-
-
-          <div class="col s4">
-            <div class="input-field">
-              <select name="topFlavor3" form="updateProfile">
-                <option value="" disabled selected>Choose your option</option>
-                <% flavors.forEach(function(flavor) { %>
-                  <option value="<%= flavor.id %>" <% if (topSix[2] === flavor.id) {%> selected<%} %> ><%= flavor.name %></option>
-                <% }); %>
-              </select>
+            <div class="col s4">
+              <% topFlavorsOptions(3); %>
+              <% topFlavorsOptions(4); %>
             </div>
 
-            <div class="input-field">
-              <select name="topFlavor4" form="updateProfile">
-                <option value="" disabled selected>Choose your option</option>
-                <% flavors.forEach(function(flavor) { %>
-                  <option value="<%= flavor.id %>" <% if (topSix[3] === flavor.id) {%> selected<%} %> ><%= flavor.name %></option>
-                <% }); %>
-              </select>
-            </div>
-          </div>
-          <div class="col s4">
-            <div class="input-field">
-              <select name="topFlavor5" form="updateProfile">
-                <option value="" disabled selected>Choose your option</option>
-                <% flavors.forEach(function(flavor) { %>
-                  <option value="<%= flavor.id %>" <% if (topSix[4] === flavor.id) {%> selected<%} %> ><%= flavor.name %></option>
-                <% }); %>
-              </select>
-            </div>
-
-            <div class="input-field">
-              <select name="topFlavor6" form="updateProfile">
-                <option value="" disabled selected>Choose your option</option>
-                <% flavors.forEach(function(flavor) { %>
-                  <option value="<%= flavor.id %>" <% if (topSix[5] === flavor.id) {%> selected<%} %> ><%= flavor.name %></option>
-                <% }); %>
-              </select>
+            <div class="col s4">
+              <% topFlavorsOptions(5); %>
+              <% topFlavorsOptions(6); %>
             </div>
           </div>
         </div>
@@ -88,65 +88,46 @@
         <form method="put" id="updateProfile" action="/profile">
 
           <div class="row">
-            <div class="col">
-              <h4>NonFat</h4>
-              <% flavors.forEach(function(flavor, id) { %>
-                <% if (flavor.flavorType === 'nonfat' && flavor.status === 'in-rotation') { %>
-                  <p>
-                    <input type="checkbox" id="<%= flavor.id %>" name="<%= flavor.id %>" <% if (allLikes[id] === flavor.id) {%> checked<%} %> >
-                    <label for="<%= flavor.id %>"><%= flavor.name %></label>
-                  </p>
-                <% } %>
-              <% }); %>
+            <div class="col s12 m4">
+              <div class="gray-card">
+                <h4>NonFat</h4>
+                <% flavorLikeOptions('nonfat') %>
+              </div>
             </div>
-            <div class="col">
-              <h4>LowFat</h4>
-              <% flavors.forEach(function(flavor) { %>
-                <% if (flavor.flavorType === 'lowfat' && flavor.status === 'in-rotation') { %>
-                  <p>
-                    <input type="checkbox" id="<%= flavor.id %>" name="<%= flavor.id %>" <% if (allLikes[id] === flavor.id) {%> checked<%} %> >
-                    <label for="<%= flavor.id %>"><%= flavor.name %></label>
-                  </p>
-                <% } %>
-              <% }); %>
 
-              <h4>No Sugar Added</h4>
-              <% flavors.forEach(function(flavor) { %>
-                <% if (flavor.flavorType === 'nsa' && flavor.status === 'in-rotation') { %>
-                  <p>
-                    <input type="checkbox" id="<%= flavor.id %>" name="<%= flavor.id %>" <% if (allLikes[id] === flavor.id) {%> checked<%} %> >
-                    <label for="<%= flavor.id %>"><%= flavor.name %></label>
-                  </p>
-                <% } %>
-              <% }); %>
+            <div class="col s12 m4">
+              <div class="gray-card">
+                <h4>LowFat</h4>
+                <% flavorLikeOptions('lowfat') %>
+              </div>
+
+              <div class="gray-card">
+                <h4>No Sugar Added</h4>
+                <% flavorLikeOptions('nsa') %>
+              </div>
             </div>
-            <div class="col">
-              <h4>Non-Dairy Sorbet</h4>
-              <% flavors.forEach(function(flavor) { %>
-                <% if (flavor.flavorType === 'non-dairy-sorbet' && flavor.status === 'in-rotation') { %>
-                  <p>
-                    <input type="checkbox" id="<%= flavor.id %>" name="<%= flavor.id %>" <% if (allLikes[id] === flavor.id) {%> checked<%} %> >
-                    <label for="<%= flavor.id %>"><%= flavor.name %></label>
-                  </p>
-                <% } %>
-              <% }); %>
 
-              <h4>Almond Milk</h4>
-              <% flavors.forEach(function(flavor) { %>
-                <% if (flavor.flavorType === 'ams' && flavor.status === 'in-rotation') { %>
-                  <p>
-                    <input type="checkbox" id="<%= flavor.id %>"  name="<%= flavor.id %>" <% if (allLikes[id] === flavor.id) {%> checked<%} %> >
-                    <label for="<%= flavor.id %>"><%= flavor.name %></label>
-                  </p>
-                <% } %>
-              <% }); %>
+            <div class="col s12 m4">
+              <div class="gray-card">
+                <h4>Non-Dairy Sorbet</h4>
+                <% flavorLikeOptions('non-dairy-sorbet') %>
+              </div>
+
+              <div class="gray-card">
+                <h4>Almond Milk</h4>
+                <% flavorLikeOptions('ams') %>
+              </div>
             </div>
           </div> <!-- END ROW -->
-          <input type="submit" value="submit">
+          <div class="row">
+            <div class="col s12 submit-container">
+              <input type="submit" value="submit" class="whitecap-green btn">
+            </div>
+          </div>
         </form>
-      </div>
-    </div>
 
+      </div> <!-- END COL s9 -->
+    </div><!-- END ROW -->
 
 
     <% include ../partials/footer %>

@@ -4,12 +4,23 @@ $green: #4fb14b;
 $gray: #f1f1f1;
 $radius: 5px;
 
+@font-face {
+  font-family: 'appleberry2';
+  src: url("../fonts/appleberry_with_accents-webfont.eot");
+  src: url("../fonts/appleberry_with_accents-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/appleberry_with_accents-webfont.woff") format("woff"), url("../fonts/appleberry_with_accents-webfont.ttf") format("truetype"), url("../fonts/appleberry_with_accents-webfont.svg#appleberry2Regular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  outline: none;
+  text-decoration: none;
+}
 
 /* =========== GENERAL ===========*/
 html, body {
   height: 100%;
 }
-
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'appleberry2', sans-serif;
+}
 body .whitecap-green.btn, body .whitecap-green-bg {
   background: $green !important;
 }
@@ -54,7 +65,13 @@ body .whitecap-blue-text {
     }
 
 }
-
+.green-card {
+    /* z-depth-2 */
+    -webkit-box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+    background-color: $green;
+    border-radius: $radius;
+}
 
 
 /* =========== PAGES ===========*/
@@ -127,9 +144,7 @@ body .whitecap-blue-text {
   }
 }
 
-#flavor-form {
-  background: $gray;
-}
+
 
 #dashboard {
   .graphTitle {
@@ -143,6 +158,10 @@ body .whitecap-blue-text {
 }
 
 #flavors {
+  #flavor-form {
+    background: $gray;
+    margin-top: 15px;
+  }
   .flavorsLink {
     background: $green;
     color: #fff;
@@ -164,4 +183,39 @@ body .whitecap-blue-text {
       margin-bottom: 0px;
     }
   }
+}
+
+#profile {
+  form {
+    .gray-card {
+      padding: 1px 1.5vw 15px;
+      margin-bottom: 15px;
+    }
+    .submit-container {
+      text-align: center;
+      .whitecap-green.btn {
+        font-size: 1.5rem;
+
+      }
+    }
+    input[type="checkbox"]:checked+label:before {
+      border-right: 2px solid #57b235 !important;
+      border-bottom: 2px solid #57b235 !important;
+    }
+  }
+  .profileLink {
+    background: $green;
+    color: #fff;
+  }
+  .input-field {
+    background: $gray;
+    border-radius: 3px;
+  }
+  .select-dropdown {
+    border-radius: 3px;
+  }
+  .green-card {
+    text-align: center;
+  }
+
 }

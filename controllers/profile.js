@@ -2,22 +2,27 @@ var db = require('../models');
 var express = require('express');
 var router = express.Router();
 var isLoggedIn = require('../middleware/isLoggedIn');
+var flash = require('connect-flash');
 
 router.route('/')
   .get(isLoggedIn, function(req, res) {
     db.flavor.findAll({order:['name']}).then(function(flavors) {
-      db.favorites_users_flavors.findAll({
-        where: {userId: req.body.userId}
-      }).then(function(favorites) {
-        db.users_flavors.findAll({
-          where: {userId: req.body.userId}
-        }).then(function(likes) {
-          res.render('profile/show', {flavors: flavors, favorites: favorites, likes: likes});
-      });
-      });
+      db.profile.findAll({
+        where: {userId: req.user.id}
+      }).then(function(profile) {
+        db.favorites_users_flavors.findAll({
+          where: {userId: req.user.id}
+        }).then(function(favorites) {
+          db.users_flavors.findAll({
+            where: {userId: req.user.id}
+          }).then(function(likes) {
+            //res.send(profile);
+            res.render('profile/show', {flavors: flavors, favorites: favorites, likes: likes, profile: profile});
+          });
+        });
+      })
     });
-
-  })
+  }) // END GET
   .put(function(req, res) {
 
     db.favorites_users_flavors.findAll({
@@ -70,24 +75,6 @@ router.route('/')
         });
       });
 
-      var checkedFlavs = [];
-      for (var x in req.body) {
-        if (req.body[x] === 'on') {
-          checkedFlavs.push(x);
-        }
-      }
-
-      checkedFlavs.forEach(function(flavorId, id){
-        db.users_flavors.findOrCreate({
-          where: {flavorId: parseInt(flavorId), userId: req.user.id},
-          defaults: {flavorId: parseInt(flavorId), userId: req.user.id}
-        }).spread(function(newFlavor, wasCreated) {
-          //Add the relationship between the post and tag in the posts_tags table
-
-        });
-      });
-
-
       db.profile.update({
         topFlavor1: req.body.topFlavor1,
         topFlavor2: req.body.topFlavor2,
@@ -101,10 +88,33 @@ router.route('/')
 
       });
 
+      // Grab all of the currently "liked" flavors out of req.body
+      // Then add them to the array checkedFlavs
+      var checkedFlavs = [];
+      for (var x in req.body) {
+        if (req.body[x] === 'on') {
+          checkedFlavs.push(x);
+        }
+      }
 
-    });
+      // Remove all of the users old "liked" flavors
+      // Then Add all of the currently "liked" flavors
+      db.users_flavors.destroy({
+        where: {userId: req.user.id}
+      }).then(function() {
+        checkedFlavs.forEach(function(flavorId, id){
+          db.users_flavors.findOrCreate({
+            where: {flavorId: parseInt(flavorId), userId: req.user.id},
+            defaults: {flavorId: parseInt(flavorId), userId: req.user.id}
+          }).spread(function(newFlavor, wasCreated) {
 
-  });
+          });
+        }); // END forEach
+      });
+      req.flash('success', 'Your favorites have been updated!');
+      res.send('');
+    }); // Ending of the .then of db.favorites_users_flavors
+  }); // END PUT
 
 // END '/' Route
 

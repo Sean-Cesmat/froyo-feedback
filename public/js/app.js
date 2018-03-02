@@ -22,7 +22,7 @@ $(document).ready(function(){
       url: $(this).attr('action'),
       data: $(this).serialize(),
     }).done(function(data) {
-      window.reload();
+      window.location.reload();
     });
   })
 
