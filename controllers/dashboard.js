@@ -31,9 +31,15 @@ router.route('/')
             flavors: flavors,
             flavorIdNameObj: flavorIdNameObj
           });
-        });
-      });
-    });
+        }).catch(function(error) {
+            console.log(error);
+          });;
+      }).catch(function(error) {
+          console.log(error);
+        });;
+    }).catch(function(error) {
+        console.log(error);;
+      });;
   });
 
 // END /dashboard '/' route

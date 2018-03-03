@@ -5,14 +5,13 @@ var router = express.Router();
 
 
 router.post('/', function(req, res) {
-  console.log('trying to create');
   db.user.findOrCreate({
     where: {email: req.body.email},
     defaults: {
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
-      userType: 'admin'
+      // userType: 'admin'
     }
   }).spread(function(user, created) {
     if (created) {

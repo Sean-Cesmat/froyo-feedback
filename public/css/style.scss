@@ -162,6 +162,10 @@ body .whitecap-blue-text {
     background: $gray;
     margin-top: 15px;
   }
+
+  h4 {
+    color: $lightBlue;
+  }
   .flavorsLink {
     background: $green;
     color: #fff;
@@ -172,9 +176,26 @@ body .whitecap-blue-text {
   .input-field {
     margin-top: 0px;
   }
+  .gray-card {
+    padding: 1px 1.5vw 15px;
+    margin-bottom: 15px;
+  }
+  .flavor-name {
+    font-size: 1.5rem;
+    margin-bottom: 0px;
+    color: $green;
+  }
+  .flavor-type-status {
+    font-size: 1.1rem;
+    margin-top: -5px;
+  }
   form {
     .gray-card {
       padding: 24px 5px;
+      h4 {
+        margin-top: 0px;
+      text-align: center;
+      }
     }
     .col {
       text-align: center;

@@ -14,7 +14,7 @@
 
           <form method="post" action="/dashboard/flavors" id="flavor-form">
             <div class="gray-card">
-
+              <h4>Add A Flavor</h4>
               <div class="row valign-wrapper">
                 <div class="col s12 m4">
                   <input type="text" name="name" placeholder="Flavor name" />
@@ -52,32 +52,44 @@
           </form>
 
 
-        <h2>All The Flavors</h2>
         <% var printFlavors = function(type){ %>
           <h4><%= type %></h4>
           <% flavors.forEach(function(flavor) { %>
             <% if (flavor.flavorType === type) { %>
               <div>
-                <h5><%= flavor.name %></h5>
-                <p>
+                <p class="flavor-name"><%= flavor.name %></p>
+                <p class="flavor-type-status">
                   <%= flavor.flavorType %> (<%= flavor.status %>)
+                  <a href="" ><span class="badge">Edit</span></a>
                 </p>
               </div>
             <% } %>
 
           <% }); %>
         <% } %>
+
         <div class="row">
-          <div class="col s12 m4">
-            <% printFlavors('NonFat') %>
+          <div class="col s12 m6 l4">
+            <div class="gray-card">
+              <% printFlavors('NonFat') %>
+            </div>
           </div>
           <div class="col s12 m4">
-            <% printFlavors('LowFat') %>
-            <% printFlavors('No Sugar Added') %>
+            <div class="gray-card">
+              <% printFlavors('LowFat') %>
+            </div>
+
+            <div class="gray-card">
+              <% printFlavors('No Sugar Added') %>
+            </div>
           </div>
           <div class="col s12 m4">
-            <% printFlavors('Non-Dairy Sorbet') %>
-            <% printFlavors('Almond Milk') %>
+            <div class="gray-card">
+              <% printFlavors('Non-Dairy Sorbet') %>
+            </div>
+            <div class="gray-card">
+              <% printFlavors('Almond Milk') %>
+            </div>
           </div>
         </div>
 
