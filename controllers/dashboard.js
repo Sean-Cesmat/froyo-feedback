@@ -24,13 +24,13 @@ router.route('/')
           flavors.forEach(function(flavor) {
             flavorIdNameObj[flavor.id] = flavor.name;
           });
-          res.send(favoritesCount[0]);
-          // res.render('dashboard', {
-          //   favoritesCount: favoritesCount[0],
-          //   likesCount: likesCount[0],
-          //   flavors: flavors,
-          //   flavorIdNameObj: flavorIdNameObj
-          // });
+          // res.send(favoritesCount[0]);
+          res.render('dashboard', {
+            favoritesCount: favoritesCount[0],
+            likesCount: likesCount[0],
+            flavors: flavors,
+            flavorIdNameObj: flavorIdNameObj
+          });
         }).catch(function(error) {
             console.log(error);
           });;
