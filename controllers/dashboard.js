@@ -6,41 +6,114 @@ var async = require('async');
 
 router.route('/')
   .get(isAdmin, function(req, res) {
-    var query = 'SELECT "flavorId", COUNT(*) ' +
-                'FROM favorites_users_flavors ' +
-                'GROUP BY "flavorId" ' +
-                'ORDER by COUNT(*) DESC;';
-    db.sequelize.query(query).then(function(favoritesCount) {
-      // res.send(favoritesCount)
-      var flavorIdNameObj = {};
-
-      var query = 'SELECT "flavorId", COUNT(*) ' +
-                  'FROM users_flavors ' +
-                  'GROUP BY "flavorId" ' +
-                  'ORDER by COUNT(*) DESC;';
-      db.sequelize.query(query).then(function(likesCount) {
-
+    async.parallel({
+      favoritesCount: function(callback) {
+        var query = 'SELECT "flavorId", COUNT(*) ' +
+                    'FROM favorites_users_flavors ' +
+                    'GROUP BY "flavorId" ' +
+                    'ORDER by COUNT(*) DESC;';
+        db.sequelize.query(query).then(function(favoritesCount){
+          callback(null, favoritesCount[0]);
+        }).catch(function(error) {
+          console.log(error);
+        });
+      },
+      likesCount: function(callback) {
+        var query = 'SELECT "flavorId", COUNT(*) ' +
+                    'FROM users_flavors ' +
+                    'GROUP BY "flavorId" ' +
+                    'ORDER by COUNT(*) DESC;';
+        db.sequelize.query(query).then(function(likesCount) {
+          callback(null, likesCount[0]);
+        }).catch(function(error) {
+          console.log(error);
+        });
+      },
+      flavorIdNameObj: function(callback) {
+        var flavorIdNameObj = {};
         db.flavor.findAll().then(function(flavors) {
-
           flavors.forEach(function(flavor) {
             flavorIdNameObj[flavor.id] = flavor.name;
           });
-
-          res.render('dashboard', {
-            favoritesCount: favoritesCount[0],
-            likesCount: likesCount[0],
-            flavors: flavors,
-            flavorIdNameObj: flavorIdNameObj
-          });
+          callback(null, flavorIdNameObj);
         }).catch(function(error) {
-            console.log(error);
-          });;
-      }).catch(function(error) {
           console.log(error);
-        });;
-    }).catch(function(error) {
-        console.log(error);;
-      });;
+        });
+      },
+      topNonFat: function(callback) {
+        var query = 'SELECT "flavorId","flavorType","name", COUNT(*) ' +
+                    'FROM flavors ' +
+                    'JOIN favorites_users_flavors ON flavors.id = favorites_users_flavors."flavorId" ' +
+                    'WHERE flavors."flavorType" = \'NonFat\' ' +
+                    'GROUP BY "flavorId", "flavorType", "name" ' +
+                    'ORDER by COUNT(*) DESC ' +
+                    'LIMIT 10;';
+        db.sequelize.query(query).then(function(topNonFat) {
+          callback(null, topNonFat[0]);
+        }).catch(function(error) {
+          console.log(error);
+        });
+      },
+      topLowFat: function(callback) {
+        var query = 'SELECT "flavorId","flavorType","name", COUNT(*) ' +
+                    'FROM flavors ' +
+                    'JOIN favorites_users_flavors ON flavors.id = favorites_users_flavors."flavorId" ' +
+                    'WHERE flavors."flavorType" = \'LowFat\' ' +
+                    'GROUP BY "flavorId", "flavorType", "name" ' +
+                    'ORDER by COUNT(*) DESC ' +
+                    'LIMIT 10;';
+        db.sequelize.query(query).then(function(topLowFat) {
+          callback(null, topLowFat[0]);
+        }).catch(function(error) {
+          console.log(error);
+        });
+      },
+      topNSA: function(callback) {
+        var query = 'SELECT "flavorId","flavorType","name", COUNT(*) ' +
+                    'FROM flavors ' +
+                    'JOIN favorites_users_flavors ON flavors.id = favorites_users_flavors."flavorId" ' +
+                    'WHERE flavors."flavorType" = \'No Sugar Added\' ' +
+                    'GROUP BY "flavorId", "flavorType", "name" ' +
+                    'ORDER by COUNT(*) DESC ' +
+                    'LIMIT 10;';
+        db.sequelize.query(query).then(function(topNSA) {
+          callback(null, topNSA[0]);
+        }).catch(function(error) {
+          console.log(error);
+        });
+      },
+      topSorbet: function(callback) {
+        var query = 'SELECT "flavorId","flavorType","name", COUNT(*) ' +
+                    'FROM flavors ' +
+                    'JOIN favorites_users_flavors ON flavors.id = favorites_users_flavors."flavorId" ' +
+                    'WHERE flavors."flavorType" = \'Non-Dairy Sorbet\' ' +
+                    'GROUP BY "flavorId", "flavorType", "name" ' +
+                    'ORDER by COUNT(*) DESC ' +
+                    'LIMIT 2;';
+        db.sequelize.query(query).then(function(topSorbet) {
+          callback(null, topSorbet[0]);
+        }).catch(function(error) {
+          console.log(error);
+        });
+      },
+      topAlmondMilk: function(callback) {
+        var query = 'SELECT "flavorId","flavorType","name", COUNT(*) ' +
+                    'FROM flavors ' +
+                    'JOIN favorites_users_flavors ON flavors.id = favorites_users_flavors."flavorId" ' +
+                    'WHERE flavors."flavorType" = \'Almond Milk\' ' +
+                    'GROUP BY "flavorId", "flavorType", "name" ' +
+                    'ORDER by COUNT(*) DESC ' +
+                    'LIMIT 10;';
+        db.sequelize.query(query).then(function(topAlmondMilk) {
+          callback(null, topAlmondMilk[0]);
+        }).catch(function(error) {
+          console.log(error);
+        });
+      }
+    }, function(err, results) {
+      // res.send(results);
+      res.render('dashboard', results);
+    });
   });
 
 // END /dashboard '/' route

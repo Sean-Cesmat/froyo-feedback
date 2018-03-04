@@ -3,35 +3,61 @@ var express = require('express');
 var router = express.Router();
 var isLoggedIn = require('../middleware/isLoggedIn');
 var flash = require('connect-flash');
+var async = require('async');
+var currentUser = 2;//req.user.id;
 
 router.route('/')
   .get(isLoggedIn, function(req, res) {
-    db.flavor.findAll({order:['name']}).then(function(flavors) {
-      db.profile.findAll({
-        where: {userId: req.user.id}
-      }).then(function(profile) {
-        db.favorites_users_flavors.findAll({
-          where: {userId: req.user.id}
-        }).then(function(favorites) {
-          db.users_flavors.findAll({
-            where: {userId: req.user.id}
-          }).then(function(likes) {
-            db.user.findById(req.user.id).then(function(user){
-
-                res.render('profile/show', {flavors: flavors, favorites: favorites, likes: likes, profile: profile, user: user});
-
-            }); //END THEN
-
-
-          });
+    async.parallel({
+      flavors: function(callback) {
+        db.flavor.findAll({order:['name']}).then(function(flavors) {
+          callback(null, flavors);
+        }).catch(function(error) {
+          console.log(error);
         });
-      })
+      },
+      profile: function(callback) {
+        db.profile.findAll({
+          where: {userId: currentUser}
+        }).then(function(profile) {
+          callback(null, profile);
+        }).catch(function(error) {
+          console.log(error);
+        });
+      },
+      favorites: function(callback) {
+        db.favorites_users_flavors.findAll({
+          where: {userId: currentUser}
+        }).then(function(favorites) {
+          callback(null, favorites);
+        }).catch(function(error) {
+          console.log(error);
+        });
+      },
+      likes: function(callback) {
+        db.users_flavors.findAll({
+          where: {userId: currentUser}
+        }).then(function(likes) {
+          callback(null, likes);
+        }).catch(function(error) {
+          console.log(error);
+        });
+      },
+      user: function(callback) {
+        db.user.findById(currentUser).then(function(user){
+          callback(null, user);
+        }).catch(function(error) {
+          console.log(error);
+        });
+      }
+    }, function(err, results) {
+      res.render('profile/show', results);
     });
   }) // END GET
   .put(function(req, res) {
 
     db.favorites_users_flavors.findAll({
-      where: {userId: req.user.id},
+      where: {userId: currentUser},
     }).then(function(favorites) {
       var topFlavors =[];
       var curFlavors = [];
@@ -63,23 +89,27 @@ router.route('/')
         }
       }
 
+      // Remove all flavor id's from the join table in the needToRemove Array
       needToRemove.forEach(function(flavorId) {
         db.favorites_users_flavors.destroy({
-          where: {userId: req.user.id, flavorId: flavorId}
+          where: {userId: currentUser, flavorId: flavorId}
         }).then(function(data) {
 
         });
       });
 
+      // Add all flavor id's from the join table in the needToRemove Array
+      // Adds to join table for counting
       needToAdd.forEach(function(flavorId) {
         db.favorites_users_flavors.create({
-          userId: req.user.id,
+          userId: currentUser,
           flavorId: flavorId
         }).then(function(data) {
 
         });
       });
 
+      // Keep track of exactly flavor profile in profile table
       db.profile.update({
         topFlavor1: req.body.topFlavor1,
         topFlavor2: req.body.topFlavor2,
@@ -88,7 +118,7 @@ router.route('/')
         topFlavor5: req.body.topFlavor5,
         topFlavor6: req.body.topFlavor6
       }, {
-        where: {userId: req.user.id}
+        where: {userId: currentUser}
       }).then(function(data) {
 
       });
@@ -105,12 +135,12 @@ router.route('/')
       // Remove all of the users old "liked" flavors
       // Then Add all of the currently "liked" flavors
       db.users_flavors.destroy({
-        where: {userId: req.user.id}
+        where: {userId: currentUser}
       }).then(function() {
         checkedFlavs.forEach(function(flavorId, id){
           db.users_flavors.findOrCreate({
-            where: {flavorId: parseInt(flavorId), userId: req.user.id},
-            defaults: {flavorId: parseInt(flavorId), userId: req.user.id}
+            where: {flavorId: parseInt(flavorId), userId: currentUser},
+            defaults: {flavorId: parseInt(flavorId), userId: currentUser}
           }).spread(function(newFlavor, wasCreated) {
 
           });
