@@ -38,7 +38,7 @@
     <% var favoritesTotals = []; %>
     <% var likesTotals = []; %>
     <% for (var i = 0; i < 8; i++) { %>
-      <% console.log(favoritesCount[0]) %>
+      <% console.log(favoritesCount) %>
       <% var name = flavorIdNameObj[parseInt(favoritesCount[i].flavorId)]; %>
       <% favoritesNames.push(name + ' (' + favoritesCount[i].count + ')' );  %>
       <% favoritesTotals.push(parseInt(favoritesCount[i].count)); %>
