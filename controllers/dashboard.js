@@ -70,4 +70,43 @@ router.route('/flavors')
   });
 // End /dashboard '/flavors'
 
+router.route('/flavors/:id/edit')
+  .get(isAdmin, function(req, res) {
+    db.flavor.findById(req.params.id).then(function(flavor) {
+      // res.send(flavors);
+      res.render('flavors/edit', {flavor: flavor});
+    });
+  });
+// End /dashboard '/flavors/:id/edit'
+
+router.route('/flavors/:id')
+  .put(function(req, res) {
+    var newStatus = 'out';
+    if (req.body.status === 'on') {
+      newStatus = 'in-rotation';
+    }
+    db.flavor.update({
+      name: req.body.name,
+      flavorType: req.body.flavorType,
+      status: newStatus
+    }, {
+      where: {id: req.params.id}
+    }).then(function(data) {
+      req.flash('success', req.body.name + ' has been updated!');
+      res.send('');
+    });
+  })
+  .delete(function(req, res) {
+    db.flavor.findById(req.params.id).then(function(flavor) {
+      db.flavor.destroy({
+        where: {id: req.params.id}
+      }).then(function(data) {
+        req.flash('success', flavor.name + ' has been removed.');
+        res.send('')
+      });
+    });
+  });
+// END /dashboard '/flavors/:id'
+
+
 module.exports = router;

@@ -60,8 +60,11 @@
                 <p class="flavor-name"><%= flavor.name %></p>
                 <p class="flavor-type-status">
                   <%= flavor.flavorType %> (<%= flavor.status %>)
-                  <a href="" ><span class="badge">Edit</span></a>
                 </p>
+                <div class="edit-delete-btn-container">
+                  <a href="/dashboard/flavors/<%= flavor.id %>/edit" class="whitecap-blue btn">Edit</a>
+                  <a href="#delete-modal" data-delete="/dashboard/flavors/<%= flavor.id %>" class="whitecap-blue btn delete-modal delete-flavor">Delete</a>
+                </div>
               </div>
             <% } %>
 
@@ -98,7 +101,15 @@
       </div> <!-- END CONTENT AREA -->
     </div> <!-- END ROW -->
 
-
+    <div id="delete-modal" class="modal">
+      <div class="modal-content">
+        <h4>Are you sure you?</h4>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" id="cancel-delete" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        <a href="#!" id="approve-delete" class="modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
+      </div>
+    </div>
 
     <% include ../partials/footer %>
     <% include ../partials/alerts %>

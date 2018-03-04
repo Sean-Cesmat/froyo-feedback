@@ -37,6 +37,14 @@ body .whitecap-blue-text {
   border-radius: $radius;
 }
 
+.switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #2c4c82;
+}
+
+.switch label input[type=checkbox]:checked+.lever {
+    background-color: #7d92b7;
+}
+
 .nav-links {
   margin: 0 auto;
   width: 80%;
@@ -188,13 +196,20 @@ body .whitecap-blue-text {
   .flavor-type-status {
     font-size: 1.1rem;
     margin-top: -5px;
+    margin-bottom: 0px;
+  }
+  div.edit-delete-btn-container a.btn {
+    height: 29px;
+    line-height: 29px;
+    padding: 0px 6px;
+    font-size: 0.9rem;
   }
   form {
     .gray-card {
       padding: 24px 5px;
       h4 {
         margin-top: 0px;
-      text-align: center;
+        text-align: center;
       }
     }
     .col {

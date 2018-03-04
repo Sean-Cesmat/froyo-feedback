@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flavors | FroyoFeedback</title>
+    <% include ../partials/head %>
+  </head>
+  <body id="flavors">
+    <div class="row">
+      <div class="col s3 sidebar-nav">
+        <!-- Grey navigation panel -->
+        <% include ../partials/admin_nav %>
+      </div>
+      <div class="col s9 push-s3 main-content">
+
+          <form method="put" action="/dashboard/flavors/<%= flavor.id %>" id="edit-flavor-form">
+            <div class="gray-card">
+              <h4>Add A Flavor</h4>
+              <div class="row valign-wrapper">
+                <div class="col s12 m4">
+                  <input type="text" name="name" value="<%= flavor.name %>" />
+                </div>
+
+
+                <div class="col s12 m3">
+                  <div class="input-field">
+                    <select name="flavorType" form="flavor-form">
+                      <option value="" disabled selected>Choose your option</option>
+                      <option value="NonFat" <% if ( flavor.flavorType === 'NonFat') { %> selected <% } %> >NonFat</option>
+                      <option value="LowFat" <% if ( flavor.flavorType === 'LowFat') { %> selected <% } %> >LowFat</option>
+                      <option value="No Sugar Added" <% if ( flavor.flavorType === 'No Sugar Added') { %> selected <% } %> >No Sugar Added / NonFat</option>
+                      <option value="Non-Dairy Sorbet" <% if ( flavor.flavorType === 'Non-Dairy Sorbet') { %> selected <% } %> >Non-Dairy Sorbet</option>
+                      <option value="Almond Milk"  <% if ( flavor.flavorType === 'Almond Milk') { %> selected <% } %> >Almond Milk</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col s12 m2">
+                  <div class="switch">
+                    <label>
+                      <input type="checkbox" name="status" <% if (flavor.status === 'in-rotation') { %> checked <% } %> >
+                      <span class="lever"></span>
+                      In-Rotation
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col s12 m3">
+                  <input type="submit" value="Apply Edit" class="whitecap-green btn">
+                </div>
+              </div> <!-- END ROW valign-wrapper -->
+
+            </div>
+          </form>
+
+      </div> <!-- END CONTENT AREA -->
+    </div> <!-- END ROW -->
+
+
+
+    <% include ../partials/footer %>
+    <% include ../partials/alerts %>
+  </body>
+</html>
