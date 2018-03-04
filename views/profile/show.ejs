@@ -48,16 +48,27 @@
 
 
 <!-- ========= BEGINING OF PAGE CONTENT ============= -->
-    <div class="row">
-      <div class="col s3 sidebar-nav z-depth-3">
+    <div class="row mobile-only">
+      <div class="col s12 mobile-nav z-depth-3 valign-wrapper">
+        <div class="col s5">
+          <img src="/img/whitecaplogo_white.png" class="logo">
+        </div>
+        <div class="col s7 right-nav">
+          <div class="avatar">
+            <img src="http://api.adorable.io/avatar/<%= user.email %>" >
+            <p><%= user.name %></p>
+          </div>
+
+          <a class="whitecap-blue btn logout" href="/logout">Logout</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row no-mobile">
+      <div class="col s12 m3 sidebar-nav z-depth-3 hide-on-small-only">
         <img src="/img/whitecaplogo_white.png">
 
         <ul class="nav-links">
-          <div class="avatar">
-            <img src="http://api.adorable.io/avatar/<%= user.email %>" >
-            <h5><%= user.email %></h5>
-          </div>
-
           <a href="/profile">
             <li class="profileLink">
               Profile
@@ -68,17 +79,28 @@
               Options
             </li>
           </a> -->
-
         </ul>
-        <a class="whitecap-blue btn" href="/logout">Logout</a>
+        <div>
+          <div class="avatar">
+            <img src="http://api.adorable.io/avatar/<%= user.email %>" >
+            <h5><%= user.name %></h5>
+          </div>
+          <a class="whitecap-blue btn logout" href="/logout">Logout</a>
+        </div>
+
       </div>
 
-      <div class="col s9 push-s3 main-content">
+      <div class="col s12 m9 push-m3 main-content">
 
         <div class="row">
           <div class="col s12">
             <div class="green-card">
-              <h3>Top 6 Favorite Flavors</h3>
+
+              <div class="row">
+                <div class="col s12">
+                  <h3>Top 6 Favorite Flavors</h3>
+                </div>
+              </div>
 
               <div class="row">
                 <div class="col s6 m6 l4">
