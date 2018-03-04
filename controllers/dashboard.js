@@ -26,7 +26,7 @@ router.route('/')
           });
           console.log(favoritesCount);
           console.log(favoritesCount[0]);
-          console.log(favoritesCount[0].flavorId);
+          console.log(favoritesCount[0][0].flavorId);
           // res.send(favoritesCount[0]);
           res.render('dashboard', {
             favoritesCount: favoritesCount[0],
