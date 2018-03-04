@@ -38,10 +38,8 @@
     <% var favoritesTotals = []; %>
     <% var likesTotals = []; %>
     <% for (var i = 0; i < 8; i++) { %>
-      <% console.log(favoritesCount[0][0]) %>
-      <% console.log(favoritesCount[0][0].flavorId) %>
-      <% console.log(favoritesCount[0].flavorId) %>
-      <% var name = flavorIdNameObj[parseInt(favoritesCount[i].flavorId)]; %>
+
+      <% var name = flavorIdNameObj[parseInt(favoritesCount[i]['flavorId'])]; %>
       <% favoritesNames.push(name + ' (' + favoritesCount[i].count + ')' );  %>
       <% favoritesTotals.push(parseInt(favoritesCount[i].count)); %>
     <% } %>
