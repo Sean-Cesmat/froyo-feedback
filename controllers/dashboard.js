@@ -2,6 +2,7 @@ var db = require('../models');
 var express = require('express');
 var router = express.Router();
 var isAdmin = require('../middleware/isAdmin');
+var async = require('async');
 
 router.route('/')
   .get(isAdmin, function(req, res) {
