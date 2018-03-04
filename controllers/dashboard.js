@@ -24,6 +24,9 @@ router.route('/')
           flavors.forEach(function(flavor) {
             flavorIdNameObj[flavor.id] = flavor.name;
           });
+          console.log(favoritesCount);
+          console.log(favoritesCount[0]);
+          console.log(favoritesCount[0].flavorId);
           // res.send(favoritesCount[0]);
           res.render('dashboard', {
             favoritesCount: favoritesCount[0],
