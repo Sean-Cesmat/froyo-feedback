@@ -38,10 +38,10 @@
     <% var favoritesTotals = []; %>
     <% var likesTotals = []; %>
     <% for (var i = 0; i < 8; i++) { %>
-      <% console.log(favoritesCount) %>
-      <% var name = flavorIdNameObj[parseInt(favoritesCount[i].flavorId)]; %>
-      <% favoritesNames.push(name + ' (' + favoritesCount[i].count + ')' );  %>
-      <% favoritesTotals.push(parseInt(favoritesCount[i].count)); %>
+      <% console.log(favoritesCount[0].anonymous) %>
+      <% var name = flavorIdNameObj[parseInt(favoritesCount[i].anonymous.flavorId)]; %>
+      <% favoritesNames.push(name + ' (' + favoritesCount[i].anonymous.count + ')' );  %>
+      <% favoritesTotals.push(parseInt(favoritesCount[i].anonymous.count)); %>
     <% } %>
     <% likesCount.forEach(function(like, i) { %>
       <% var name = flavorIdNameObj[parseInt(likesCount[i].flavorId)]; %>
