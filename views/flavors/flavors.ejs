@@ -26,44 +26,44 @@
       </div>
       <div class="col s12 m12 l9 push-l3 main-content">
 
-          <form method="post" action="/dashboard/flavors" id="flavor-form">
-            <div class="gray-card">
-              <h4>Add A Flavor</h4>
-              <div class="row valign-wrapper">
-                <div class="col s12 m6 l4">
-                  <input type="text" name="name" placeholder="Flavor name" />
-                </div>
+        <form method="post" action="/dashboard/flavors" id="flavor-form">
+          <div class="gray-card">
+            <h4>Add A Flavor</h4>
+            <div class="row valign-wrapper">
+              <div class="col s12 m6 l4">
+                <input type="text" name="name" placeholder="Flavor name" />
+              </div>
 
-                <div class="col s12 m6 l3">
-                  <div class="input-field">
-                    <select name="flavorType" form="flavor-form">
-                      <option value="" disabled selected>Choose your option</option>
-                      <option value="NonFat">NonFat</option>
-                      <option value="LowFat">LowFat</option>
-                      <option value="No Sugar Added">No Sugar Added / NonFat</option>
-                      <option value="Non-Dairy Sorbet">Non-Dairy Sorbet</option>
-                      <option value="Almond Milk">Almond Milk</option>
-                    </select>
-                  </div>
+              <div class="col s12 m6 l3">
+                <div class="input-field">
+                  <select name="flavorType" form="flavor-form">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="NonFat">NonFat</option>
+                    <option value="LowFat">LowFat</option>
+                    <option value="No Sugar Added">No Sugar Added / NonFat</option>
+                    <option value="Non-Dairy Sorbet">Non-Dairy Sorbet</option>
+                    <option value="Almond Milk">Almond Milk</option>
+                  </select>
                 </div>
+              </div>
 
-                <div class="col s12 m12 l2">
-                  <div class="switch">
-                    <label>
-                      <input type="checkbox" name="status" checked>
-                      <span class="lever"></span>
-                      In-Rotation
-                    </label>
-                  </div>
+              <div class="col s12 m12 l2">
+                <div class="switch">
+                  <label>
+                    <input type="checkbox" name="status" checked>
+                    <span class="lever"></span>
+                    In-Rotation
+                  </label>
                 </div>
+              </div>
 
-                <div class="col s12 m12 l3">
-                  <input type="submit" value="Add Flavor" class="whitecap-green btn">
-                </div>
-              </div> <!-- END ROW valign-wrapper -->
+              <div class="col s12 m12 l3">
+                <input type="submit" value="Add Flavor" class="whitecap-green btn">
+              </div>
+            </div> <!-- END ROW valign-wrapper -->
 
-            </div>
-          </form>
+          </div>
+        </form>
 
 
         <% var printFlavors = function(type){ %>
@@ -109,8 +109,6 @@
             </div>
           </div>
         </div>
-
-
 
       </div> <!-- END CONTENT AREA -->
     </div> <!-- END ROW -->

@@ -28,7 +28,6 @@
       </div>
     <% } %>
     <% var flavorLikeOptions = function(type) { %>
-      <% console.log(allLikes);%>
       <% flavors.forEach(function(flavor, id) { %>
         <% if (flavor.flavorType === type && flavor.status === 'in-rotation') { %>
           <% var likedFlavor = false; %>
@@ -74,11 +73,6 @@
               Profile
             </li>
           </a>
-          <!-- <a href="/profile/options">
-            <li class="optionsLink">
-              Options
-            </li>
-          </a> -->
         </ul>
         <div>
           <div class="avatar">
@@ -87,7 +81,6 @@
           </div>
           <a class="whitecap-blue btn logout" href="/logout">Logout</a>
         </div>
-
       </div>
 
       <div class="col s12 m12 l9 push-l3 main-content">

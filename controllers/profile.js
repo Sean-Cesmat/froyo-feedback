@@ -4,10 +4,10 @@ var router = express.Router();
 var isLoggedIn = require('../middleware/isLoggedIn');
 var flash = require('connect-flash');
 var async = require('async');
-var currentUser = 2;//req.user.id;
 
 router.route('/')
   .get(isLoggedIn, function(req, res) {
+
     async.parallel({
       flavors: function(callback) {
         db.flavor.findAll({order:['name']}).then(function(flavors) {
@@ -18,7 +18,7 @@ router.route('/')
       },
       profile: function(callback) {
         db.profile.findAll({
-          where: {userId: currentUser}
+          where: {userId: req.user.id}
         }).then(function(profile) {
           callback(null, profile);
         }).catch(function(error) {
@@ -27,7 +27,7 @@ router.route('/')
       },
       favorites: function(callback) {
         db.favorites_users_flavors.findAll({
-          where: {userId: currentUser}
+          where: {userId: req.user.id}
         }).then(function(favorites) {
           callback(null, favorites);
         }).catch(function(error) {
@@ -36,7 +36,7 @@ router.route('/')
       },
       likes: function(callback) {
         db.users_flavors.findAll({
-          where: {userId: currentUser}
+          where: {userId: req.user.id}
         }).then(function(likes) {
           callback(null, likes);
         }).catch(function(error) {
@@ -44,7 +44,7 @@ router.route('/')
         });
       },
       user: function(callback) {
-        db.user.findById(currentUser).then(function(user){
+        db.user.findById(req.user.id).then(function(user){
           callback(null, user);
         }).catch(function(error) {
           console.log(error);
@@ -57,7 +57,7 @@ router.route('/')
   .put(function(req, res) {
 
     db.favorites_users_flavors.findAll({
-      where: {userId: currentUser},
+      where: {userId: req.user.id},
     }).then(function(favorites) {
       var topFlavors =[];
       var curFlavors = [];
@@ -92,7 +92,7 @@ router.route('/')
       // Remove all flavor id's from the join table in the needToRemove Array
       needToRemove.forEach(function(flavorId) {
         db.favorites_users_flavors.destroy({
-          where: {userId: currentUser, flavorId: flavorId}
+          where: {userId: req.user.id, flavorId: flavorId}
         }).then(function(data) {
 
         });
@@ -102,7 +102,7 @@ router.route('/')
       // Adds to join table for counting
       needToAdd.forEach(function(flavorId) {
         db.favorites_users_flavors.create({
-          userId: currentUser,
+          userId: req.user.id,
           flavorId: flavorId
         }).then(function(data) {
 
@@ -118,7 +118,7 @@ router.route('/')
         topFlavor5: req.body.topFlavor5,
         topFlavor6: req.body.topFlavor6
       }, {
-        where: {userId: currentUser}
+        where: {userId: req.user.id}
       }).then(function(data) {
 
       });
@@ -135,12 +135,12 @@ router.route('/')
       // Remove all of the users old "liked" flavors
       // Then Add all of the currently "liked" flavors
       db.users_flavors.destroy({
-        where: {userId: currentUser}
+        where: {userId: req.user.id}
       }).then(function() {
         checkedFlavs.forEach(function(flavorId, id){
           db.users_flavors.findOrCreate({
-            where: {flavorId: parseInt(flavorId), userId: currentUser},
-            defaults: {flavorId: parseInt(flavorId), userId: currentUser}
+            where: {flavorId: parseInt(flavorId), userId: req.user.id},
+            defaults: {flavorId: parseInt(flavorId), userId: req.user.id}
           }).spread(function(newFlavor, wasCreated) {
 
           });

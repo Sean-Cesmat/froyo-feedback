@@ -41,16 +41,19 @@ In the top section has an area for some visual representations of the data colle
 
 | Verb   | Path                        | Action | Used For |
 | ------ |:--------------------------- | :----- | :------  |
-| GET    | /                           | index  | Loads the homepage
-| POST   | /login                      | show   | Authenticates and sends user to their flavor profile
+| GET    | /                           | index  | Loads the homepage with login screen
+| POST   | /login                      | show   | Authenticates and redirects user to their flavor profile
+| GET    | /admin                      | index  | Loads the admin login screen
+| POST   | /admin                      | show   | Authenticates and redirects admin user to dashboard
 | POST   | /sign-up                    | create | Creates a new user and send them to their flavor profile
 | GET    | /logout                     | index  | Logs out the user and redirects to the homepage
-| GET    | /flavor-profile             | show   | Retrieves the users profile and renders it
-| PUT    | /flavor-profile             | edit   | Upon saving profile, it will save the updates to the database
+| GET    | /profile                    | show   | Retrieves the users profile and renders it
+| PUT    | /profile                    | edit   | Upon saving profile, it saves the updates to the database
 | GET    | /dashboard                  | show   | Displays the statistics to the admin only
 | GET    | /dashboard/flavors          | show   | Retrieves the flavors available to the flavor profiles
 | POST   | /dashboard/flavors          | create | Creates a new flavor option to the customers flavor profiles
-| PUT    | /dashboard/flavors/:id/edit | edit   | Edits a flavor option, updates the database
+| GET    | /dashboard/flavors/:id/edit | edit   | Loads the edit page for the specific flavor by id
+| PUT    | /dashboard/flavors/:id      | edit   | Edits a flavor option and updates the database
 | DELETE | /dashboard/flavors/:id      | delete | Destroys a flavor option
 
 
@@ -58,39 +61,46 @@ In the top section has an area for some visual representations of the data colle
 
 #### **User Model**
 ##### Associations: Has one profile & Can have many flavors
-| ID   | Name | Email          | Password         |
-| ---- |:----:| --------------:| ---------------: |
-| 5    | Tom  | tom@jerry.com  | 3Jc$9m2(m38dnDi2 |
+| ID   | Name | Email          | Password         | User Type   |
+| ---- |:----:| :-------------:| :--------------: | :---------: |
+| 5    | Tom  | tom@jerry.com  | 3Jc$9m2(m38dnDi2 | admin       |
 
 #### **Profile Model**
 ##### Associations: Belongs to one user
 | ID   | UserId | Top Fav 1 | Top Fav 2 | Top Fav 3 | Top Fav 4 | Top Fav 5 | Top Fav 6 | Birthday | Email Notifications |
-| ---- |:------:| ---------:| ---------:| ---------:| ---------:| ---------:| ---------:| --------:| -------------------:|      
+| ---- |:------:| :--------:| :--------:| :--------:| :--------:| :--------:| :--------:| :-------:| :------------------:|      
 | 2    | 5      | flavor_id | flavor_id | flavor_id | flavor_id | flavor_id | flavor_id | M/Year   | True or False       |
 
 
 #### **Flavor Model**
 ##### Associations: Flavors can have many Users
-| ID   | Name       | Category    | Status      |
-| ---- |:----------:| ----------: | ----------: |
+| ID   | Name       | Flavor Type | Status      |
+| ---- |:----------:| :---------: | :---------: |
 | 23   | Chocolate  | Low Fat     | In Rotation |
 
-#### **Users_Flavors Model**
+#### **Users_Flavors Model (for tracking flavor likes)**
 ##### Associations: Join Table (Users can have many Flavors & Flavors can have many Users)
 | ID   | UserId | Flavor_id |
-| ---- |:------:| --------: |
+| ---- |:------:| :-------: |
+| 23   | 5      | 45        |
+
+#### **Favorites_Users_Flavors Model (for tracking/counting flavor favorites)**
+##### Associations: Join Table (Users can have many Flavors & Flavors can have many Users)
+| ID   | UserId | Flavor_id |
+| ---- |:------:| :-------: |
 | 23   | 5      | 45        |
 
 ## Things I need to do
   - ~~Wireframes~~
   - ~~Create Models~~
-  -
-
-  - Add Edit/Delete Routes for flavors
+  - ~~Build Routes~~
+  - ~~Add Edit/Delete Routes for flavors~~
   - ~~Add API~~
-  - Add Other Charts
   - ~~Add Ability to store likes~~
-  - ~~Add old db call back in for favorite Flavors~~
+  - ~~Add charts to dashboard~~
+  - ~~Add lists of top flavors by category to dashboard~~
+  - Add ability to receive emails about favorite flavors
+  - Set a cronjob to scrape White Cap website for current flavors
 
 
 ## MODULES I'LL NEED
@@ -106,7 +116,7 @@ In the top section has an area for some visual representations of the data colle
 - passport-local
 - connect-flash
 - express-session
-- async??
+- async
 
 #### Extras
 - rowdy-logger
