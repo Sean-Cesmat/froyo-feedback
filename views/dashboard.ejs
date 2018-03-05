@@ -7,24 +7,26 @@
   <body id="dashboard">
     <div class="row mobile-only">
       <div class="col s12 mobile-nav z-depth-3 valign-wrapper">
-        <div class="col s5">
-          <img src="/img/whitecaplogo_white.png" class="logo">
-        </div>
-        <div class="col s7 right-nav">
-          <a href="/dashboard" class="mobile-nav-link dashboard">Dashboard</a>
-          <a href="/dashboard/flavors" class="mobile-nav-link flavors">Flavors</a>
+        <div class="row">
+          <div class="col s12">
+            <img src="/img/whitecaplogo_white.png" class="logo">
+          </div>
+          <div class="col s12 right-nav">
+            <a href="/dashboard" class="mobile-nav-link dashboard">Dashboard</a>
+            <a href="/dashboard/flavors" class="mobile-nav-link flavors">Flavors</a>
 
-          <a class="whitecap-blue btn logout" href="/logout">Logout</a>
+            <a class="whitecap-blue btn logout" href="/logout">Logout</a>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="row no-mobile">
-      <div class="col s12 m12 l3 sidebar-nav z-depth-3 hide-on-med-and-down">
+      <div class="col s12 m3 sidebar-nav z-depth-3 hide-on-small-only">
         <!-- Grey navigation panel -->
         <% include ./partials/admin_nav %>
       </div>
-      <div class="col s12 m12 l9 push-l3 main-content">
+      <div class="col s12 m9 push-m3 main-content">
         <div class="row">
           <div class="col s12 m12 l6 border-radius">
             <div class="gray-card">

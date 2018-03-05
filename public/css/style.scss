@@ -228,6 +228,15 @@ body .whitecap-blue-text {
 
 
 #dashboard {
+  .logo {
+    width: 200px;
+    margin: 0 auto;
+    display: table;
+  }
+  .mobile-nav .right-nav {
+    margin: 6px 0px -10px 0px;
+    justify-content: center;
+  }
   .graphTitle {
     text-align: center;
     padding-top: 10px;
@@ -243,7 +252,15 @@ body .whitecap-blue-text {
     background: $gray;
     margin-top: 15px;
   }
-
+  .logo {
+    width: 200px;
+    margin: 0 auto;
+    display: table;
+  }
+  .mobile-nav .right-nav {
+    margin: 6px 0px -10px 0px;
+    justify-content: center;
+  }
   h4 {
     color: $lightBlue;
   }
@@ -391,9 +408,6 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
         display: block
       }
     }
-  }
-  .mobile-only {
-    display: block;
   }
 }
 
