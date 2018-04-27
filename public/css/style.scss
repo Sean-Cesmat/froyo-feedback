@@ -156,6 +156,7 @@ body .whitecap-blue-text {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: 100%;
   img {
     max-width: 100%;
@@ -163,7 +164,9 @@ body .whitecap-blue-text {
     margin-bottom: 15px;
   }
 }
-
+.admin-login.btn {
+  margin-top: 10px;
+}
 .login-container {
   background: #fff;
   border-radius: $radius;
@@ -197,6 +200,11 @@ body .whitecap-blue-text {
       color: $lightBlue;
     }
   }
+}
+
+.signin-info {
+  color: #fff;
+  font-size: 1rem;
 }
 
 

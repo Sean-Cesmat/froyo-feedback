@@ -10,11 +10,11 @@
       <form method="POST" action="/login" class="login-forms">
         <div>
           <i class="material-icons prefix">email</i>
-          <input type="text" name="email" placeholder="Email" />
+          <input type="text" name="email" placeholder="Email" value="user@gmail.com" />
         </div>
         <div>
           <i class="material-icons prefix">lock</i>
-          <input type="password" name="password" placeholder="Password" />
+          <input type="password" name="password" placeholder="Password" value="password" />
           <i class="material-icons password-view-toggle prefix">remove_red_eye</i>
         </div>
         <input type="submit" class="whitecap-green btn" value="Login" />
@@ -23,6 +23,7 @@
         Don't have an account yet? <a class="modal-trigger" href="#signup-modal">Sign-Up</a>
       </p>
     </div>
+    <a href="/admin" class="btn whitecap-green admin-login">Admin Panel Login</a>
 
     <!-- Modal Structure -->
     <div id="signup-modal" class="modal">

@@ -10,16 +10,21 @@
       <form method="POST" action="/admin" class="login-forms">
         <div>
           <i class="material-icons prefix">email</i>
-          <input type="text" name="email" placeholder="Email" />
+          <input type="text" name="email" placeholder="Email" value="sean@admin.com" />
         </div>
         <div>
           <i class="material-icons prefix">lock</i>
-          <input type="password" name="password" placeholder="Password" />
+          <input type="password" name="password" placeholder="Password" value="password" />
           <i class="material-icons password-view-toggle prefix">remove_red_eye</i>
         </div>
         <input type="submit" class="whitecap-green btn" value="Login" />
       </form>
     </div>
+    <p class="signin-info">
+      To see the admin panel use:<br />
+      Username: sean@admin.com<br />
+      Password: password
+    </p>
 
     <% include ./partials/footer %>
     <% include ./partials/alerts %>
